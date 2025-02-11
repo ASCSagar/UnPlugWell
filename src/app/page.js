@@ -1,17 +1,17 @@
-import HeroSection from "../components/HeroSection";
-import TrendingPosts from "../components/TrendingPosts";
-import LatestPosts from "../components/LatestPosts";
-import Categories from "../components/Categories";
-import Newsletter from "@/components/Newsletter";
+import Hero from "@/components/Hero/Hero";
+import TrendingBlogs from "@/components/TrendingBlogs/TrendingBlogs";
+import LatestBlogs from "@/components/LatestBlogs/LatestBlogs";
+import Categories from "@/components/Categories/Categories";
+import NewsLetter from "@/components/NewsLetter/NewsLetter";
 
 export default function Home() {
   return (
     <div className="blob-container">
-      <HeroSection />
-      <TrendingPosts />
-      <LatestPosts />
+      <Hero />
+      <TrendingBlogs />
+      <LatestBlogs />
       <Categories />
-      <Newsletter />
+      <NewsLetter />
     </div>
   );
 }

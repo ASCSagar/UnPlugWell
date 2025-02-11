@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Search,
   Grid,
@@ -9,72 +9,82 @@ import {
   Share2,
   ChevronDown,
 } from "lucide-react";
+import axios from "axios";
 import Link from "next/link";
 
 export default function Blog() {
   const [view, setView] = useState("grid");
   const [selectedCategory, setSelectedCategory] = useState("All");
-  const [sortBy, setSortBy] = useState("latest");
   const [searchQuery, setSearchQuery] = useState("");
   const [isCategoryOpen, setIsCategoryOpen] = useState(false);
+  const [categories, setCategories] = useState(["All"]);
+  const [blogs, setBlogs] = useState([]);
+  const [filteredBlogs, setFilteredBlogs] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [page, setPage] = useState(1);
+  const [hasMore, setHasMore] = useState(true);
 
-  const categories = [
-    "All",
-    "Digital Wellness",
-    "Mental Health",
-    "Productivity",
-    "Tech Balance",
-    "Mindfulness",
-    "Well-being",
-  ];
+  useEffect(() => {
+    const fetchBlogs = async () => {
+      try {
+        const response = await axios.get(
+          `https://unplugwell.com/blog/api/posts/?page=${page}`
+        );
+        if (page === 1) {
+          setBlogs(response.data.results);
+        } else {
+          setBlogs((prev) => [...prev, ...response.data.results]);
+        }
+        setHasMore(response.data.next !== null);
+      } catch (error) {
+        console.log("error", error);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  const blogPosts = [
-    {
-      id: 1,
-      title: "The Future of Digital Well-being in 2025",
-      excerpt:
-        "Explore how emerging technologies are shaping our relationship with digital wellness and what it means for our future.",
-      category: "Digital Wellness",
-      image:
-        "https://images.unsplash.com/photo-1533090161767-e6ffed986c88?w=800&auto=format&fit=crop",
-      author: {
-        name: "Sarah Johnson",
-        avatar:
-          "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&auto=format&fit=crop",
-        role: "Digital Wellness Expert",
-      },
-      date: "Feb 10, 2025",
-      readTime: "8 min read",
-      tags: ["Technology", "Wellness", "Future Trends"],
-    },
-    {
-      id: 2,
-      title: "Digital Minimalism: A Path to Mindful Technology Use",
-      excerpt:
-        "Discover how embracing digital minimalism can transform your relationship with technology and improve your overall well-being.",
-      category: "Digital Wellness",
-      image:
-        "https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=800&auto=format&fit=crop",
-      author: {
-        name: "Sarah Johnson",
-        avatar:
-          "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&auto=format&fit=crop",
-        role: "Digital Wellness Expert",
-      },
-      date: "February 8, 2025",
-      readTime: "8 min read",
-      tags: ["Digital Minimalism", "Wellness", "Productivity"],
-      slug: "digital-minimalism-path-mindful-technology",
-    },
-  ];
+    fetchBlogs();
+  }, [page]);
 
-  const filteredPosts = blogPosts
-    .filter((post) =>
-      post.title.toLowerCase().includes(searchQuery.toLowerCase())
-    )
-    .filter((post) =>
-      selectedCategory === "All" ? true : post.category === selectedCategory
-    );
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await axios.get(
+          "https://unplugwell.com/blog/api/get-categories/?site=unplugwell.com"
+        );
+        setCategories((prev) => [
+          "All",
+          ...response.data.results.map((category) => category.name),
+        ]);
+      } catch (error) {
+        console.log("error", error);
+      }
+    };
+
+    fetchCategories();
+  }, []);
+
+  useEffect(() => {
+    let filtered = blogs;
+
+    if (selectedCategory !== "All") {
+      filtered = filtered.filter(
+        (blog) => blog.category.name === selectedCategory
+      );
+    }
+
+    if (searchQuery) {
+      filtered = filtered.filter((blog) =>
+        blog.title.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    }
+
+    setFilteredBlogs(filtered);
+  }, [selectedCategory, searchQuery, blogs]);
+
+  const loadMore = () => {
+    setPage((prev) => prev + 1);
+  };
 
   return (
     <main className="py-12 min-h-screen bg-gray-50 dark:bg-gray-900">
@@ -119,9 +129,9 @@ export default function Blog() {
               </button>
               {isCategoryOpen && (
                 <div className="mt-2 space-y-2">
-                  {categories.map((category) => (
+                  {categories.map((category, index) => (
                     <button
-                      key={category}
+                      key={index}
                       onClick={() => {
                         setSelectedCategory(category);
                         setIsCategoryOpen(false);
@@ -139,9 +149,9 @@ export default function Blog() {
               )}
             </div>
             <div className="hidden md:flex items-center gap-2">
-              {categories.map((category) => (
+              {categories.map((category, index) => (
                 <button
-                  key={category}
+                  key={index}
                   onClick={() => setSelectedCategory(category)}
                   className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
                     selectedCategory === category
@@ -154,17 +164,7 @@ export default function Blog() {
               ))}
             </div>
             <div className="flex items-center gap-4">
-              <select
-                value={sortBy}
-                onChange={(e) => setSortBy(e.target.value)}
-                className="px-4 py-2 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
-              >
-                <option value="latest">Latest</option>
-                <option value="popular">Most Popular</option>
-                <option value="trending">Trending</option>
-              </select>
-
-              <div className="flex items-center gap-2 bg-gray-100 dark:bg-gray-700 rounded-lg p-1">
+              <div className="flex items-center gap-2 rounded-lg p-1">
                 <button
                   onClick={() => setView("grid")}
                   className={`p-2 rounded ${
@@ -191,92 +191,113 @@ export default function Blog() {
         </div>
       </section>
       <section className="container mx-auto px-6 py-12">
-        <div
-          className={
-            view === "grid"
-              ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-              : "space-y-8"
-          }
-        >
-          {filteredPosts.map((post) => (
-            <Link
-              href={`/blog/${post.slug || post.id}`}
-              key={post.id}
-              className="block h-full"
+        {loading ? (
+          <div className="flex justify-center items-center ">
+            <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-purple-500"></div>
+          </div>
+        ) : (
+          <div>
+            <div
+              className={
+                view === "grid"
+                  ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+                  : "space-y-8"
+              }
             >
-              <article
-                className={`h-full flex flex-col bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all ${
-                  view === "list" ? "md:flex-row" : ""
-                }`}
-              >
-                <div
-                  className={`relative ${
-                    view === "list" ? "md:w-1/3 h-48 md:h-auto" : "h-48"
-                  }`}
-                >
-                  <img
-                    src={post.image}
-                    alt={post.title}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute top-4 left-4">
-                    <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-white/90 dark:bg-gray-900/90 text-purple-600 dark:text-purple-400 text-sm font-medium">
-                      <Tag className="h-3 w-3" />
-                      {post.category}
-                    </span>
-                  </div>
-                </div>
-                <div
-                  className={`p-6 flex flex-col flex-1 ${
-                    view === "list" ? "md:w-2/3" : ""
-                  }`}
-                >
-                  <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-2 hover:text-purple-600 dark:hover:text-purple-400">
-                    {post.title}
-                  </h2>
-                  <p className="text-gray-600 dark:text-gray-300 mb-4">
-                    {post.excerpt}
-                  </p>
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {post.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded-md text-sm text-gray-600 dark:text-gray-400"
+              {filteredBlogs.map(
+                ({
+                  id,
+                  slug,
+                  featured_image,
+                  image_alt,
+                  title,
+                  excerpt,
+                  tags,
+                  category,
+                  author,
+                }) => (
+                  <Link href={`/blog/${slug}`} key={id} className="block h-full">
+                    <article
+                      className={`h-full flex flex-col bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all ${
+                        view === "list" ? "md:flex-row" : ""
+                      }`}
+                    >
+                      <div
+                        className={`relative ${
+                          view === "list" ? "md:w-1/3 h-48 md:h-auto" : "h-48"
+                        }`}
                       >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                  <div className="flex items-center justify-between mt-auto">
-                    <div className="flex items-center gap-3">
-                      <img
-                        src={post.author.avatar}
-                        alt={post.author.name}
-                        className="w-10 h-10 rounded-full"
-                      />
-                      <div>
-                        <p className="text-sm font-medium text-gray-900 dark:text-white">
-                          {post.author.name}
-                        </p>
-                        <p className="text-sm text-gray-500 dark:text-gray-400">
-                          {post.author.role}
-                        </p>
+                        <img
+                          src={featured_image}
+                          alt={image_alt}
+                          className="w-full h-full object-cover"
+                        />
+                        <div className="absolute top-4 left-4">
+                          <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-white/90 dark:bg-gray-900/90 text-purple-600 dark:text-purple-400 text-sm font-medium">
+                            <Tag className="h-3 w-3" />
+                            {category.name}
+                          </span>
+                        </div>
                       </div>
-                    </div>
-                    <div className="flex items-center gap-4">
-                      <button className="text-gray-400 hover:text-purple-600 dark:hover:text-purple-400">
-                        <Bookmark className="h-5 w-5" />
-                      </button>
-                      <button className="text-gray-400 hover:text-purple-600 dark:hover:text-purple-400">
-                        <Share2 className="h-5 w-5" />
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </article>
-            </Link>
-          ))}
-        </div>
+                      <div
+                        className={`p-6 flex flex-col flex-1 ${
+                          view === "list" ? "md:w-2/3" : ""
+                        }`}
+                      >
+                        <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-2 hover:text-purple-600 dark:hover:text-purple-400">
+                          {title}
+                        </h2>
+                        <p className="text-gray-600 dark:text-gray-300 mb-4">
+                          {excerpt}
+                        </p>
+                        <div className="flex flex-wrap gap-2 mb-4">
+                          {tags.map((tag, index) => (
+                            <span
+                              key={index}
+                              className="px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded-md text-sm text-gray-600 dark:text-gray-400"
+                            >
+                              {tag.name}
+                            </span>
+                          ))}
+                        </div>
+                        <div className="flex items-center justify-between mt-auto">
+                          <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 rounded-full border-2 border-purple-100 dark:border-purple-900 flex items-center justify-center bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 font-semibold">
+                              {author.full_name.charAt(0)}
+                            </div>
+                            <div>
+                              <p className="text-sm font-medium text-gray-900 dark:text-white">
+                                {author.full_name}
+                              </p>
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-4">
+                            <button className="text-gray-400 hover:text-purple-600 dark:hover:text-purple-400">
+                              <Bookmark className="h-5 w-5" />
+                            </button>
+                            <button className="text-gray-400 hover:text-purple-600 dark:hover:text-purple-400">
+                              <Share2 className="h-5 w-5" />
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </article>
+                  </Link>
+                )
+              )}
+            </div>
+            {hasMore && (
+              <div className="flex justify-center mt-8">
+                <button
+                  onClick={loadMore}
+                  className="px-6 py-2 bg-purple-600 text-white rounded-full hover:bg-purple-700 transition-all"
+                >
+                  Load More
+                </button>
+              </div>
+            )}
+          </div>
+        )}
       </section>
     </main>
   );

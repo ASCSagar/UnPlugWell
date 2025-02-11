@@ -1,6 +1,6 @@
 "use client";
-import { useState, useEffect } from "react";
-import { Mail, CheckCircle, XCircle, Sparkles, Send } from "lucide-react";
+import { useState } from "react";
+import { Mail, CheckCircle, Sparkles, Send } from "lucide-react";
 
 const benefits = [
   "Weekly digital wellness tips",
@@ -9,45 +9,11 @@ const benefits = [
   "Monthly wellness challenges",
 ];
 
-const Newsletter = () => {
+const NewsLetter = () => {
   const [email, setEmail] = useState("");
-  const [status, setStatus] = useState("idle");
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    const element = document.getElementById("newsletter-section");
-    if (element) {
-      observer.observe(element);
-    }
-
-    return () => {
-      if (element) {
-        observer.unobserve(element);
-      }
-    };
-  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setStatus("loading");
-    try {
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-      setStatus("success");
-      setEmail("");
-      setTimeout(() => setStatus("idle"), 3000);
-    } catch (error) {
-      setStatus("error");
-      setTimeout(() => setStatus("idle"), 3000);
-    }
   };
 
   return (
@@ -62,13 +28,7 @@ const Newsletter = () => {
       </div>
       <div className="relative container mx-auto px-6">
         <div className="max-w-4xl mx-auto">
-          <div
-            className={`text-center mb-12 transition-all duration-700 ${
-              isVisible
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-10"
-            }`}
-          >
+          <div className="text-center mb-12 transition-all duration-700">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 text-white text-sm font-medium mb-6">
               <Sparkles className="h-4 w-4" />
               Join Our Community
@@ -81,13 +41,7 @@ const Newsletter = () => {
               digital balance and mindful technology use.
             </p>
           </div>
-          <div
-            className={`max-w-lg mx-auto transition-all duration-700 delay-200 ${
-              isVisible
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-10"
-            }`}
-          >
+          <div className="max-w-lg mx-auto transition-all duration-700 delay-200">
             <form
               onSubmit={handleSubmit}
               className="relative flex flex-col sm:flex-row gap-4"
@@ -105,41 +59,14 @@ const Newsletter = () => {
               </div>
               <button
                 type="submit"
-                disabled={status === "loading"}
                 className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-purple-600 hover:bg-purple-700 text-white font-semibold transition-colors duration-300 disabled:opacity-70"
               >
-                {status === "loading" ? (
-                  <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                ) : (
-                  <>
-                    Subscribe
-                    <Send className="ml-2 h-5 w-5" />
-                  </>
-                )}
+                Subscribe
+                <Send className="ml-2 h-5 w-5" />
               </button>
             </form>
-            <div className="mt-4 text-center">
-              {status === "success" && (
-                <div className="flex items-center justify-center gap-2 text-green-400">
-                  <CheckCircle className="h-5 w-5" />
-                  <span>Thanks for subscribing!</span>
-                </div>
-              )}
-              {status === "error" && (
-                <div className="flex items-center justify-center gap-2 text-red-400">
-                  <XCircle className="h-5 w-5" />
-                  <span>Oops! Something went wrong. Please try again.</span>
-                </div>
-              )}
-            </div>
           </div>
-          <div
-            className={`mt-12 grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto transition-all duration-700 delay-400 ${
-              isVisible
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-10"
-            }`}
-          >
+          <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto transition-all duration-700 delay-400">
             {benefits.map((benefit, index) => (
               <div
                 key={benefit}
@@ -152,13 +79,7 @@ const Newsletter = () => {
               </div>
             ))}
           </div>
-          <p
-            className={`mt-8 text-center text-sm text-purple-200/80 transition-all duration-700 delay-500 ${
-              isVisible
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-10"
-            }`}
-          >
+          <p className="mt-8 text-center text-sm text-purple-200/80 transition-all duration-700 delay-500">
             We respect your privacy. Unsubscribe at any time.
           </p>
         </div>
@@ -167,4 +88,4 @@ const Newsletter = () => {
   );
 };
 
-export default Newsletter;
+export default NewsLetter;
