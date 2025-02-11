@@ -1,16 +1,15 @@
-import './globals.css'
-
-export const metadata = {
-  title: 'Unplugwell',
-  description: 'Digital Wellness Blog',
-}
+import "./globals.css";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="min-h-screen bg-white dark:bg-gray-900">
+      <body>
+        <Header />
         {children}
+        <Footer />
       </body>
     </html>
-  )
+  );
 }

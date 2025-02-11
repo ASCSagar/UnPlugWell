@@ -1,11 +1,17 @@
-'use client';
+"use client";
+import { useState, useEffect } from "react";
+import { Mail, CheckCircle, XCircle, Sparkles, Send } from "lucide-react";
 
-import { useState, useEffect } from 'react';
-import { Mail, CheckCircle, XCircle, Sparkles, Send } from 'lucide-react';
+const benefits = [
+  "Weekly digital wellness tips",
+  "Exclusive mindfulness resources",
+  "Early access to new articles",
+  "Monthly wellness challenges",
+];
 
 const Newsletter = () => {
-  const [email, setEmail] = useState('');
-  const [status, setStatus] = useState('idle'); // idle, loading, success, error
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState("idle");
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -18,7 +24,7 @@ const Newsletter = () => {
       { threshold: 0.1 }
     );
 
-    const element = document.getElementById('newsletter-section');
+    const element = document.getElementById("newsletter-section");
     if (element) {
       observer.observe(element);
     }
@@ -32,50 +38,35 @@ const Newsletter = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setStatus('loading');
-
-    // Simulate API call
+    setStatus("loading");
     try {
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      setStatus('success');
-      setEmail('');
-      setTimeout(() => setStatus('idle'), 3000);
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+      setStatus("success");
+      setEmail("");
+      setTimeout(() => setStatus("idle"), 3000);
     } catch (error) {
-      setStatus('error');
-      setTimeout(() => setStatus('idle'), 3000);
+      setStatus("error");
+      setTimeout(() => setStatus("idle"), 3000);
     }
   };
 
-  const benefits = [
-    "Weekly digital wellness tips",
-    "Exclusive mindfulness resources",
-    "Early access to new articles",
-    "Monthly wellness challenges"
-  ];
-
   return (
-    <section 
-      id="newsletter-section" 
-      className="relative py-20 overflow-hidden"
-    >
-      {/* Background with gradient and pattern */}
+    <section id="newsletter-section" className="relative py-20 overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-purple-900 via-indigo-900 to-purple-900">
         <div className="absolute inset-0 bg-grid-white/[0.05]" />
       </div>
-
-      {/* Animated background shapes */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob" />
         <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-indigo-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000" />
         <div className="absolute top-40 left-40 w-80 h-80 bg-pink-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000" />
       </div>
-
       <div className="relative container mx-auto px-6">
         <div className="max-w-4xl mx-auto">
-          {/* Content */}
-          <div 
+          <div
             className={`text-center mb-12 transition-all duration-700 ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+              isVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-10"
             }`}
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 text-white text-sm font-medium mb-6">
@@ -86,18 +77,18 @@ const Newsletter = () => {
               Get Weekly Digital Wellness Insights
             </h2>
             <p className="text-xl text-purple-100 max-w-2xl mx-auto">
-              Subscribe to our newsletter and receive expert tips on maintaining digital balance 
-              and mindful technology use.
+              Subscribe to our newsletter and receive expert tips on maintaining
+              digital balance and mindful technology use.
             </p>
           </div>
-
-          {/* Form */}
-          <div 
+          <div
             className={`max-w-lg mx-auto transition-all duration-700 delay-200 ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+              isVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-10"
             }`}
           >
-            <form 
+            <form
               onSubmit={handleSubmit}
               className="relative flex flex-col sm:flex-row gap-4"
             >
@@ -114,10 +105,10 @@ const Newsletter = () => {
               </div>
               <button
                 type="submit"
-                disabled={status === 'loading'}
+                disabled={status === "loading"}
                 className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-purple-600 hover:bg-purple-700 text-white font-semibold transition-colors duration-300 disabled:opacity-70"
               >
-                {status === 'loading' ? (
+                {status === "loading" ? (
                   <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin" />
                 ) : (
                   <>
@@ -127,16 +118,14 @@ const Newsletter = () => {
                 )}
               </button>
             </form>
-
-            {/* Status Messages */}
             <div className="mt-4 text-center">
-              {status === 'success' && (
+              {status === "success" && (
                 <div className="flex items-center justify-center gap-2 text-green-400">
                   <CheckCircle className="h-5 w-5" />
                   <span>Thanks for subscribing!</span>
                 </div>
               )}
-              {status === 'error' && (
+              {status === "error" && (
                 <div className="flex items-center justify-center gap-2 text-red-400">
                   <XCircle className="h-5 w-5" />
                   <span>Oops! Something went wrong. Please try again.</span>
@@ -144,15 +133,15 @@ const Newsletter = () => {
               )}
             </div>
           </div>
-
-          {/* Benefits */}
-          <div 
+          <div
             className={`mt-12 grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto transition-all duration-700 delay-400 ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+              isVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-10"
             }`}
           >
             {benefits.map((benefit, index) => (
-              <div 
+              <div
                 key={benefit}
                 className="flex items-center gap-3 text-purple-100"
               >
@@ -163,11 +152,11 @@ const Newsletter = () => {
               </div>
             ))}
           </div>
-
-          {/* Privacy Note */}
-          <p 
+          <p
             className={`mt-8 text-center text-sm text-purple-200/80 transition-all duration-700 delay-500 ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+              isVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-10"
             }`}
           >
             We respect your privacy. Unsubscribe at any time.
