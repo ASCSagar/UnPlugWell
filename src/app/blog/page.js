@@ -108,7 +108,7 @@ export default function Blog() {
             <div className="md:hidden w-full">
               <button
                 onClick={() => setIsCategoryOpen(!isCategoryOpen)}
-                className="w-full flex justify-between items-center px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-lg"
+                className="w-full flex justify-between items-center px-4 py-2 bg-gray-100 dark:text-gray-300 dark:bg-gray-700 rounded-lg"
               >
                 <span>Categories</span>
                 <ChevronDown
@@ -157,7 +157,7 @@ export default function Blog() {
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
-                className="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                className="px-4 py-2 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
               >
                 <option value="latest">Latest</option>
                 <option value="popular">Most Popular</option>
@@ -169,7 +169,7 @@ export default function Blog() {
                   onClick={() => setView("grid")}
                   className={`p-2 rounded ${
                     view === "grid"
-                      ? "bg-white dark:bg-gray-600 shadow"
+                      ? "dark:text-gray-300 bg-white dark:bg-gray-600 shadow"
                       : "hover:bg-gray-200 dark:hover:bg-gray-600"
                   }`}
                 >
@@ -179,7 +179,7 @@ export default function Blog() {
                   onClick={() => setView("list")}
                   className={`p-2 rounded ${
                     view === "list"
-                      ? "bg-white dark:bg-gray-600 shadow"
+                      ? "dark:text-gray-300 bg-white dark:bg-gray-600 shadow"
                       : "hover:bg-gray-200 dark:hover:bg-gray-600"
                   }`}
                 >
