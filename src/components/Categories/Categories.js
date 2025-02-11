@@ -1,5 +1,4 @@
 "use client";
-import { useState, useEffect } from "react";
 import Link from "next/link";
 import {
   Brain,
@@ -76,42 +75,13 @@ const categories = [
 ];
 
 const Categories = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const [hoveredCategory, setHoveredCategory] = useState(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    const element = document.getElementById("categories-section");
-    if (element) {
-      observer.observe(element);
-    }
-
-    return () => {
-      if (element) {
-        observer.unobserve(element);
-      }
-    };
-  }, []);
-
   return (
     <section
       id="categories-section"
       className="py-20 bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800"
     >
       <div className="container mx-auto px-6">
-        <div
-          className={`text-center mb-16 ${
-            isVisible ? "animate-fade-in" : "opacity-0"
-          }`}
-        >
+        <div className="text-center mb-16">
           <span className="inline-block px-4 py-2 rounded-full bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 text-sm font-semibold mb-4">
             Explore Topics
           </span>
@@ -123,17 +93,10 @@ const Categories = () => {
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {categories.map((category, index) => (
+          {categories.map((category) => (
             <div
               key={category.id}
-              className={`relative group overflow-hidden rounded-2xl shadow-lg transition-all duration-500 ${
-                isVisible
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-10"
-              }`}
-              style={{ transitionDelay: `${index * 100}ms` }}
-              onMouseEnter={() => setHoveredCategory(category.id)}
-              onMouseLeave={() => setHoveredCategory(null)}
+              className="relative group overflow-hidden rounded-2xl shadow-lg transition-all duration-500"
             >
               <div className="absolute inset-0">
                 <img
@@ -161,18 +124,13 @@ const Categories = () => {
                 <p className="text-white/90 mb-6">{category.description}</p>
                 <div className="mt-auto">
                   <Link
-                    href={`/categories/${category.id}`}
+                    href=""
                     className="inline-flex items-center gap-2 text-white font-medium group/link"
                   >
                     Explore Category
                     <ArrowRight className="h-4 w-4 transform group-hover/link:translate-x-1 transition-transform" />
                   </Link>
                 </div>
-                <div
-                  className={`absolute inset-0 bg-black/0 transition-all duration-300 ${
-                    hoveredCategory === category.id ? "bg-black/10" : ""
-                  }`}
-                />
               </div>
             </div>
           ))}

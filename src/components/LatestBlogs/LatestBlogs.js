@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import {
   ArrowRight,
   Calendar,
@@ -82,33 +82,10 @@ const posts = [
   },
 ];
 
-const LatestPosts = () => {
-  const [isVisible, setIsVisible] = useState(false);
+const LatestBlogs = () => {
   const [currentCategory, setCurrentCategory] = useState("All");
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    const element = document.getElementById("latest-posts");
-    if (element) {
-      observer.observe(element);
-    }
-
-    return () => {
-      if (element) {
-        observer.unobserve(element);
-      }
-    };
-  }, []);
-
-  const filteredPosts =
+  const filteredBlogs =
     currentCategory === "All"
       ? posts
       : posts.filter((post) => post.category === currentCategory);
@@ -116,11 +93,7 @@ const LatestPosts = () => {
   return (
     <section id="latest-posts" className="py-20 bg-white dark:bg-gray-900">
       <div className="container mx-auto px-6">
-        <div
-          className={`text-center mb-12 ${
-            isVisible ? "animate-fade-in" : "opacity-0"
-          }`}
-        >
+        <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
             Latest Insights
           </h2>
@@ -129,12 +102,8 @@ const LatestPosts = () => {
             technology use
           </p>
         </div>
-        <div
-          className={`flex flex-wrap justify-center gap-4 mb-12 ${
-            isVisible ? "animate-fade-in animation-delay-200" : "opacity-0"
-          }`}
-        >
-          {categories.map((category, index) => (
+        <div className="flex flex-wrap justify-center gap-4 mb-12">
+          {categories.map((category) => (
             <button
               key={category}
               onClick={() => setCurrentCategory(category)}
@@ -149,15 +118,10 @@ const LatestPosts = () => {
           ))}
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {filteredPosts.map((post, index) => (
+          {filteredBlogs.map((post, index) => (
             <article
-              key={post.id}
-              className={`group relative overflow-hidden rounded-2xl shadow-lg transition-all duration-500 ${
-                isVisible
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-10"
-              }`}
-              style={{ transitionDelay: `${index * 200}ms` }}
+              key={index}
+              className="group relative overflow-hidden rounded-2xl shadow-lg transition-all duration-500"
             >
               <div className="relative h-64 overflow-hidden">
                 <img
@@ -183,7 +147,7 @@ const LatestPosts = () => {
               </div>
               <div className="relative p-6 bg-white dark:bg-gray-800">
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
-                  <Link href={`/blog/${post.id}`}>{post.title}</Link>
+                  <Link href={`/blog/${post.slug}`}>{post.title}</Link>
                 </h3>
                 <p className="text-gray-600 dark:text-gray-300 mb-4">
                   {post.excerpt}
@@ -218,7 +182,7 @@ const LatestPosts = () => {
                 <div className="absolute inset-0 bg-purple-600/0 opacity-0 group-hover:opacity-100 group-hover:bg-purple-600/5 transition-all duration-300">
                   <div className="absolute bottom-6 right-6">
                     <Link
-                      href={`/blog/${post.id}`}
+                      href={`/blog/${post.slug}`}
                       className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-900 text-purple-600 dark:text-purple-400 rounded-full text-sm font-medium hover:bg-purple-50 dark:hover:bg-gray-800 transition-colors"
                     >
                       Read More
@@ -235,4 +199,4 @@ const LatestPosts = () => {
   );
 };
 
-export default LatestPosts;
+export default LatestBlogs;
