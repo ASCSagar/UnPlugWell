@@ -12,13 +12,18 @@ import {
   ArrowLeft,
   ArrowUp,
   MessageCircle,
+  Tag,
 } from "lucide-react";
 import { useParams } from "next/navigation";
 import moment from "moment";
+import Link from "next/link";
 
 export default function BlogDetail() {
   const { slug } = useParams();
   const [blog, setBlog] = useState({});
+  const [loading, setLoading] = useState(true);
+  const [relatedBlogs, setRelatedBlogs] = useState([]);
+  const category = blog?.category?.name;
 
   useEffect(() => {
     if (!slug) return;
@@ -37,6 +42,31 @@ export default function BlogDetail() {
 
     fetchBlog();
   }, [slug]);
+
+  useEffect(() => {
+    const fetchRelatedBlogs = async () => {
+      try {
+        const response = await axios.get(
+          "https://unplugwell.com/blog/api/posts-latest/?site_domain=unplugwell.com"
+        );
+        const filteredBlogs = response.data.results.filter(
+          (item) => item.category.name === category
+        );
+
+        const shuffledBlogs = filteredBlogs
+          .sort(() => 0.5 - Math.random())
+          .slice(0, 3);
+
+        setRelatedBlogs(shuffledBlogs);
+      } catch (error) {
+        console.log("error", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchRelatedBlogs();
+  }, [category]);
 
   return (
     <main className="py-12 min-h-screen bg-white dark:bg-gray-900">
@@ -121,8 +151,9 @@ export default function BlogDetail() {
                     {blog.tags.map((tag, index) => (
                       <span
                         key={index}
-                        className="px-3 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full text-sm"
+                        className="inline-flex items-center gap-1 px-2 py-2 rounded-full bg-white/90 dark:bg-gray-900/90 text-purple-600 dark:text-purple-400 text-sm font-medium"
                       >
+                        <Tag className="h-3 w-3" />
                         {tag.name}
                       </span>
                     ))}
@@ -131,42 +162,10 @@ export default function BlogDetail() {
               )}
             </div>
           </aside>
-          <article className="lg:col-span-7 order-1 lg:order-2 prose prose-lg dark:prose-invert prose-headings:text-gray-900 dark:prose-headings:text-white prose-p:text-gray-600 dark:prose-p:text-gray-300 max-w-none">
-            <h2 id="introduction">Introduction</h2>
-            <p>
-              As we navigate the increasingly digital landscape of 2025, the
-              concept of digital well-being has evolved beyond simple screen
-              time management. This article explores the intricate relationship
-              between technology and mental health, offering insights into
-              maintaining balance in our connected world.
-            </p>
-            <h2 id="impact">The Impact of Technology</h2>
-            <p>
-              The pervasive nature of technology in our daily lives has created
-              both opportunities and challenges for mental health. While digital
-              tools have made mental health resources more accessible than ever,
-              they've also introduced new stressors and potential pitfalls.
-            </p>
-            <h2 id="strategies">Key Strategies</h2>
-            <p>
-              Developing effective strategies for digital wellness requires a
-              nuanced understanding of how technology affects our mental state.
-              Here are some key approaches to maintaining balance:
-            </p>
-            <ul>
-              <li>Setting intentional boundaries with technology</li>
-              <li>Practicing digital mindfulness</li>
-              <li>Creating tech-free zones and times</li>
-              <li>Utilizing wellness-focused apps mindfully</li>
-            </ul>
-            <h2 id="future">Looking to the Future</h2>
-            <p>
-              As technology continues to evolve, so too must our approaches to
-              digital well-being. The future holds both challenges and
-              opportunities for maintaining mental health in an increasingly
-              connected world.
-            </p>
-          </article>
+          <article
+            className="lg:col-span-7 order-1 lg:order-2 prose prose-lg dark:prose-invert prose-headings:text-gray-900 dark:prose-headings:text-white prose-p:text-gray-600 dark:prose-p:text-gray-300 max-w-none"
+            dangerouslySetInnerHTML={{ __html: blog.content }}
+          ></article>
           <aside className="lg:col-span-2 order-3">
             <div className="sticky top-24 space-y-8">
               <div className="flex flex-col items-center gap-4">
@@ -198,43 +197,50 @@ export default function BlogDetail() {
           <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">
             Related Articles
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[1, 2, 3].map((index) => (
-              <article
-                key={index}
-                className="bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300"
-              >
-                <div className="relative h-48">
-                  <img
-                    src={`https://images.unsplash.com/photo-${
-                      index + 1
-                    }?w=800&auto=format&fit=crop`}
-                    alt="Related article"
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                </div>
-
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 hover:text-purple-600 dark:hover:text-purple-400">
-                    Another Interesting Article Title
-                  </h3>
-                  <p className="text-gray-600 dark:text-gray-400 mb-4">
-                    A brief excerpt from another interesting article that
-                    relates to this topic...
-                  </p>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-gray-500 dark:text-gray-400">
-                      5 min read
-                    </span>
-                    <button className="text-purple-600 dark:text-purple-400 hover:underline">
-                      Read More
-                    </button>
+          {loading ? (
+            <div className="flex justify-center items-center">
+              <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-purple-500"></div>
+            </div>
+          ) : relatedBlogs.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {relatedBlogs.map((blog, index) => (
+                <article
+                  key={index}
+                  className="bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300"
+                >
+                  <div className="relative h-48">
+                    <img
+                      src={blog.featured_image}
+                      alt={blog.image_alt}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                   </div>
-                </div>
-              </article>
-            ))}
-          </div>
+
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 hover:text-purple-600 dark:hover:text-purple-400">
+                      <Link href={`/${blog.slug}`}>{blog.title}</Link>
+                    </h3>
+                    <p className="text-gray-600 dark:text-gray-400 mb-4">
+                      {blog.excerpt}
+                    </p>
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm text-gray-500 dark:text-gray-400">
+                        {moment(blog.published_at).startOf("hour").fromNow()}
+                      </span>
+                      <button className="text-purple-600 dark:text-purple-400 hover:underline">
+                        Read More
+                      </button>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          ) : (
+            <div className="text-center text-gray-600 dark:text-gray-400">
+              No Blogs Available..
+            </div>
+          )}
         </div>
       </section>
     </main>

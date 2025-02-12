@@ -10,6 +10,7 @@ import {
   ChevronDown,
 } from "lucide-react";
 import axios from "axios";
+import moment from "moment";
 import Link from "next/link";
 
 export default function Blog() {
@@ -28,7 +29,7 @@ export default function Blog() {
     const fetchBlogs = async () => {
       try {
         const response = await axios.get(
-          `https://unplugwell.com/blog/api/posts/?page=${page}`
+          `https://unplugwell.com/blog/api/posts/?site_domain=unplugwell.com&page=${page}`
         );
         if (page === 1) {
           setBlogs(response.data.results);
@@ -195,7 +196,7 @@ export default function Blog() {
           <div className="flex justify-center items-center ">
             <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-purple-500"></div>
           </div>
-        ) : (
+        ) : filteredBlogs.length > 0 ? (
           <div>
             <div
               className={
@@ -204,87 +205,82 @@ export default function Blog() {
                   : "space-y-8"
               }
             >
-              {filteredBlogs.map(
-                ({
-                  id,
-                  slug,
-                  featured_image,
-                  image_alt,
-                  title,
-                  excerpt,
-                  tags,
-                  category,
-                  author,
-                }) => (
-                  <Link href={`/blog/${slug}`} key={id} className="block h-full">
-                    <article
-                      className={`h-full flex flex-col bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all ${
-                        view === "list" ? "md:flex-row" : ""
+              {filteredBlogs.map((blog, index) => (
+                <Link
+                  href={`/${blog.slug}`}
+                  key={index}
+                  className="block h-full"
+                >
+                  <article
+                    className={`h-full flex flex-col bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all ${
+                      view === "list" ? "md:flex-row" : ""
+                    }`}
+                  >
+                    <div
+                      className={`relative ${
+                        view === "list" ? "md:w-1/3 h-48 md:h-auto" : "h-48"
                       }`}
                     >
-                      <div
-                        className={`relative ${
-                          view === "list" ? "md:w-1/3 h-48 md:h-auto" : "h-48"
-                        }`}
-                      >
-                        <img
-                          src={featured_image}
-                          alt={image_alt}
-                          className="w-full h-full object-cover"
-                        />
-                        <div className="absolute top-4 left-4">
-                          <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-white/90 dark:bg-gray-900/90 text-purple-600 dark:text-purple-400 text-sm font-medium">
-                            <Tag className="h-3 w-3" />
-                            {category.name}
+                      <img
+                        src={blog.featured_image}
+                        alt={blog.image_alt}
+                        className="w-full h-full object-cover"
+                      />
+                      <div className="absolute top-4 left-4">
+                        <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-white/90 dark:bg-gray-900/90 text-purple-600 dark:text-purple-400 text-sm font-medium">
+                          <Tag className="h-3 w-3" />
+                          {blog.category.name}
+                        </span>
+                      </div>
+                    </div>
+                    <div
+                      className={`p-6 flex flex-col flex-1 ${
+                        view === "list" ? "md:w-2/3" : ""
+                      }`}
+                    >
+                      <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-2 hover:text-purple-600 dark:hover:text-purple-400">
+                        {blog.title}
+                      </h2>
+                      <p className="text-gray-600 dark:text-gray-300 mb-4">
+                        {blog.excerpt}
+                      </p>
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        {blog.tags.map((tag, index) => (
+                          <span
+                            key={index}
+                            className="px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded-md text-sm text-gray-600 dark:text-gray-400"
+                          >
+                            {tag.name}
                           </span>
-                        </div>
+                        ))}
                       </div>
-                      <div
-                        className={`p-6 flex flex-col flex-1 ${
-                          view === "list" ? "md:w-2/3" : ""
-                        }`}
-                      >
-                        <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-2 hover:text-purple-600 dark:hover:text-purple-400">
-                          {title}
-                        </h2>
-                        <p className="text-gray-600 dark:text-gray-300 mb-4">
-                          {excerpt}
-                        </p>
-                        <div className="flex flex-wrap gap-2 mb-4">
-                          {tags.map((tag, index) => (
-                            <span
-                              key={index}
-                              className="px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded-md text-sm text-gray-600 dark:text-gray-400"
-                            >
-                              {tag.name}
-                            </span>
-                          ))}
-                        </div>
-                        <div className="flex items-center justify-between mt-auto">
-                          <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 rounded-full border-2 border-purple-100 dark:border-purple-900 flex items-center justify-center bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 font-semibold">
-                              {author.full_name.charAt(0)}
-                            </div>
-                            <div>
-                              <p className="text-sm font-medium text-gray-900 dark:text-white">
-                                {author.full_name}
-                              </p>
-                            </div>
+                      <div className="flex items-center justify-between mt-auto">
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 rounded-full border-2 border-purple-100 dark:border-purple-900 flex items-center justify-center bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 font-semibold">
+                            {blog.author.full_name.charAt(0)}
                           </div>
-                          <div className="flex items-center gap-4">
-                            <button className="text-gray-400 hover:text-purple-600 dark:hover:text-purple-400">
-                              <Bookmark className="h-5 w-5" />
-                            </button>
-                            <button className="text-gray-400 hover:text-purple-600 dark:hover:text-purple-400">
-                              <Share2 className="h-5 w-5" />
-                            </button>
+                          <div>
+                            <p className="text-sm font-medium text-gray-900 dark:text-white">
+                              {blog.author.full_name}
+                            </p>
+                            <p className="text-sm text-gray-500 dark:text-gray-400">
+                              {moment(blog.published_at).format("ll")}
+                            </p>
                           </div>
                         </div>
+                        <div className="flex items-center gap-4">
+                          <button className="text-gray-400 hover:text-purple-600 dark:hover:text-purple-400">
+                            <Bookmark className="h-5 w-5" />
+                          </button>
+                          <button className="text-gray-400 hover:text-purple-600 dark:hover:text-purple-400">
+                            <Share2 className="h-5 w-5" />
+                          </button>
+                        </div>
                       </div>
-                    </article>
-                  </Link>
-                )
-              )}
+                    </div>
+                  </article>
+                </Link>
+              ))}
             </div>
             {hasMore && (
               <div className="flex justify-center mt-8">
@@ -296,6 +292,10 @@ export default function Blog() {
                 </button>
               </div>
             )}
+          </div>
+        ) : (
+          <div className="text-center text-gray-600 dark:text-gray-400">
+            No Blogs Available For The {selectedCategory}.
           </div>
         )}
       </section>

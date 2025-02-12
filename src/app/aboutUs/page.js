@@ -231,21 +231,6 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-      <section className="py-20 bg-gradient-to-br from-purple-900 via-indigo-900 to-purple-900">
-        <div className="container mx-auto px-6 text-center">
-          <h2 className="text-3xl font-bold text-white mb-8">
-            Join Our Mission for Digital Wellness
-          </h2>
-          <p className="text-xl text-purple-100 mb-8 max-w-2xl mx-auto">
-            Subscribe to our newsletter and be part of a community dedicated to
-            mindful technology use.
-          </p>
-          <button className="inline-flex items-center gap-2 px-8 py-4 bg-white text-purple-900 rounded-full font-semibold hover:bg-purple-50 transition-colors">
-            Get Started
-            <ArrowRight className="h-5 w-5" />
-          </button>
-        </div>
-      </section>
     </main>
   );
 }
