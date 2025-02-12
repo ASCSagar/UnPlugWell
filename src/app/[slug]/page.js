@@ -45,6 +45,7 @@ export default function BlogDetail() {
 
   useEffect(() => {
     const fetchRelatedBlogs = async () => {
+      if (!category) return;
       try {
         const response = await axios.get(
           "https://unplugwell.com/blog/api/posts-latest/?site_domain=unplugwell.com"
@@ -77,10 +78,10 @@ export default function BlogDetail() {
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-black/20" />
-        <div className="absolute top-4 left-4 sm:top-8 sm:left-8">
+        <div className="absolute top-4 left-4 sm:top-8 sm:left-8 z-10">
           <button
             onClick={() => window.history.back()}
-            className="flex items-center gap-2 px-3 py-1 sm:px-4 sm:py-2  rounded-full bg-purple-600 text-white text-xs sm:text-sm font-medium mt-2 sm:mt-4"
+            className="flex items-center gap-2 px-3 py-1 sm:px-4 sm:py-2 rounded-full bg-purple-600 text-white text-xs sm:text-sm font-medium mt-2 sm:mt-4"
           >
             <ArrowLeft className="h-4 w-4 sm:h-5 sm:w-5" />
             Back to Blog
