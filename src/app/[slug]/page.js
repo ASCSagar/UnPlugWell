@@ -80,7 +80,7 @@ export default function BlogDetail() {
         <div className="absolute top-4 left-4 sm:top-8 sm:left-8">
           <button
             onClick={() => window.history.back()}
-            className="flex items-center gap-2 px-3 py-1 sm:px-4 sm:py-2  rounded-full bg-purple-600 text-white text-xs sm:text-sm font-medium"
+            className="flex items-center gap-2 px-3 py-1 sm:px-4 sm:py-2  rounded-full bg-purple-600 text-white text-xs sm:text-sm font-medium mt-2 sm:mt-4"
           >
             <ArrowLeft className="h-4 w-4 sm:h-5 sm:w-5" />
             Back to Blog
