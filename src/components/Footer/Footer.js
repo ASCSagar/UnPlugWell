@@ -4,7 +4,7 @@ import { Facebook, Twitter, Instagram, Linkedin, Youtube } from "lucide-react";
 const footerLinks = {
   company: [
     { name: "About Us", href: "/aboutUs" },
-    { name: "Contact", href: "/contact" },
+    { name: "Contact", href: "" },
     { name: "Careers", href: "" },
     { name: "Press", href: "" },
   ],
