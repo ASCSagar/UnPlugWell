@@ -56,60 +56,61 @@ const TrendingBlogs = () => {
         ) : trendingBlogs.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {trendingBlogs?.map((blog, index) => (
-              <Link key={index} href={`/${blog.slug}`} className="block h-full">
-                <article className="group relative bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 flex flex-col">
-                  <div className="relative w-full h-48 sm:h-56 md:h-60 lg:h-56 overflow-hidden flex-shrink-0">
-                    <img
-                      src={blog.featured_image}
-                      alt={blog.image_alt}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    <div className="absolute top-3 left-3 sm:top-4 sm:left-4">
-                      <span className="px-3 py-1 sm:px-4 sm:py-2 bg-white/90 dark:bg-gray-900/90 text-purple-600 dark:text-purple-400 text-xs sm:text-sm font-medium rounded-full shadow-lg">
-                        {blog.category.name}
-                      </span>
+              <article
+                key={index}
+                className="group relative bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 flex flex-col"
+              >
+                <div className="relative w-full h-48 sm:h-56 md:h-60 lg:h-56 overflow-hidden flex-shrink-0">
+                  <img
+                    src={blog.featured_image}
+                    alt={blog.image_alt}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="absolute top-3 left-3 sm:top-4 sm:left-4">
+                    <span className="px-3 py-1 sm:px-4 sm:py-2 bg-white/90 dark:bg-gray-900/90 text-purple-600 dark:text-purple-400 text-xs sm:text-sm font-medium rounded-full shadow-lg">
+                      {blog.category.name}
+                    </span>
+                  </div>
+                </div>
+                <div className="p-4 sm:p-6 flex flex-col flex-grow">
+                  <p className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-2 sm:mb-3 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
+                    <Link href={`/${blog.slug}`}>{blog.title}</Link>
+                  </p>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base mb-3 sm:mb-4 flex-grow">
+                    {blog.excerpt}
+                  </p>
+                  <div className="flex items-center gap-3 mb-3 sm:mb-4">
+                    <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full border-2 border-purple-100 dark:border-purple-900 flex items-center justify-center bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 font-semibold">
+                      {blog.author.full_name.charAt(0)}
+                    </div>
+                    <div>
+                      <p className="text-xs sm:text-sm font-medium text-gray-900 dark:text-white">
+                        {blog.author.full_name}
+                      </p>
+                      <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
+                        {moment(blog.published_at).format("ll")}
+                      </p>
                     </div>
                   </div>
-                  <div className="p-4 sm:p-6 flex flex-col flex-grow">
-                    <p className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-2 sm:mb-3 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
-                      {blog.title}
-                    </p>
-                    <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base mb-3 sm:mb-4 flex-grow">
-                      {blog.excerpt}
-                    </p>
-                    <div className="flex items-center gap-3 mb-3 sm:mb-4">
-                      <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full border-2 border-purple-100 dark:border-purple-900 flex items-center justify-center bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 font-semibold">
-                        {blog.author.full_name.charAt(0)}
-                      </div>
-                      <div>
-                        <p className="text-xs sm:text-sm font-medium text-gray-900 dark:text-white">
-                          {blog.author.full_name}
-                        </p>
-                        <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
-                          {moment(blog.published_at).format("ll")}
-                        </p>
-                      </div>
-                    </div>
-                    <div className="flex items-center justify-between text-xs sm:text-sm text-gray-500 dark:text-gray-400">
-                      <div className="flex items-center gap-3 sm:gap-4">
-                        <span className="flex items-center gap-1">
-                          <Heart className="h-3 w-3 sm:h-4 sm:w-4 text-pink-500" />
-                          234
-                        </span>
-                        <span className="flex items-center gap-1">
-                          <BookOpen className="h-3 w-3 sm:h-4 sm:w-4 text-blue-500" />
-                          1532
-                        </span>
-                      </div>
+                  <div className="flex items-center justify-between text-xs sm:text-sm text-gray-500 dark:text-gray-400">
+                    <div className="flex items-center gap-3 sm:gap-4">
                       <span className="flex items-center gap-1">
-                        <Clock className="h-3 w-3 sm:h-4 sm:w-4" />
-                        {moment(blog.published_at).startOf("hour").fromNow()}
+                        <Heart className="h-3 w-3 sm:h-4 sm:w-4 text-pink-500" />
+                        234
+                      </span>
+                      <span className="flex items-center gap-1">
+                        <BookOpen className="h-3 w-3 sm:h-4 sm:w-4 text-blue-500" />
+                        1532
                       </span>
                     </div>
+                    <span className="flex items-center gap-1">
+                      <Clock className="h-3 w-3 sm:h-4 sm:w-4" />
+                      {moment(blog.published_at).startOf("hour").fromNow()}
+                    </span>
                   </div>
-                </article>
-              </Link>
+                </div>
+              </article>
             ))}
           </div>
         ) : (

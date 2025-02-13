@@ -99,62 +99,63 @@ const LatestBlogs = () => {
         ) : filteredBlogs.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
             {filteredBlogs.map((blog, index) => (
-              <Link key={index} href={`/${blog.slug}`} className="block h-full">
-                <article className="group relative overflow-hidden rounded-2xl shadow-lg transition-all duration-500 h-full flex flex-col">
-                  <div className="relative h-64 overflow-hidden">
-                    <img
-                      src={blog.featured_image}
-                      alt={blog.image_alt}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                    <div className="absolute top-4 left-4">
-                      <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-white/90 dark:bg-gray-900/90 text-purple-600 dark:text-purple-400 text-sm font-medium">
-                        <Tag className="h-3 w-3" />
-                        {blog.category.name}
+              <article
+                key={index}
+                className="group relative overflow-hidden rounded-2xl shadow-lg transition-all duration-500 h-full flex flex-col"
+              >
+                <div className="relative h-64 overflow-hidden">
+                  <img
+                    src={blog.featured_image}
+                    alt={blog.image_alt}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                  <div className="absolute top-4 left-4">
+                    <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-white/90 dark:bg-gray-900/90 text-purple-600 dark:text-purple-400 text-sm font-medium">
+                      <Tag className="h-3 w-3" />
+                      {blog.category.name}
+                    </span>
+                  </div>
+                  <div className="absolute top-4 right-4 flex gap-2">
+                    <button className="p-2 rounded-full bg-white/90 dark:bg-gray-900/90 text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors">
+                      <Bookmark className="h-4 w-4" />
+                    </button>
+                    <button className="p-2 rounded-full bg-white/90 dark:bg-gray-900/90 text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors">
+                      <Share2 className="h-4 w-4" />
+                    </button>
+                  </div>
+                </div>
+                <div className="relative p-6 bg-white dark:bg-gray-800 flex flex-col flex-grow">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
+                    <Link href={`/${blog.slug}`}>{blog.title}</Link>
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-300 mb-4 flex-grow">
+                    {blog.excerpt}
+                  </p>
+                  <div className="flex flex-wrap gap-3 items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-full border-2 border-purple-100 dark:border-purple-900 flex items-center justify-center bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 font-semibold">
+                        {blog.author.full_name.charAt(0)}
+                      </div>
+                      <div>
+                        <p className="text-sm font-medium text-gray-900 dark:text-white">
+                          {blog.author.full_name}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
+                      <span className="flex items-center gap-1">
+                        <Calendar className="h-4 w-4" />
+                        {moment(blog.published_at).format("ll")}
+                      </span>
+                      <span className="flex items-center gap-1">
+                        <Clock className="h-4 w-4" />
+                        {moment(blog.published_at).startOf("hour").fromNow()}
                       </span>
                     </div>
-                    <div className="absolute top-4 right-4 flex gap-2">
-                      <button className="p-2 rounded-full bg-white/90 dark:bg-gray-900/90 text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors">
-                        <Bookmark className="h-4 w-4" />
-                      </button>
-                      <button className="p-2 rounded-full bg-white/90 dark:bg-gray-900/90 text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors">
-                        <Share2 className="h-4 w-4" />
-                      </button>
-                    </div>
                   </div>
-                  <div className="relative p-6 bg-white dark:bg-gray-800 flex flex-col flex-grow">
-                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
-                      <Link href={`/${blog.slug}`}>{blog.title}</Link>
-                    </h3>
-                    <p className="text-gray-600 dark:text-gray-300 mb-4 flex-grow">
-                      {blog.excerpt}
-                    </p>
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-full border-2 border-purple-100 dark:border-purple-900 flex items-center justify-center bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 font-semibold">
-                          {blog.author.full_name.charAt(0)}
-                        </div>
-                        <div>
-                          <p className="text-sm font-medium text-gray-900 dark:text-white">
-                            {blog.author.full_name}
-                          </p>
-                        </div>
-                      </div>
-                      <div className="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
-                        <span className="flex items-center gap-1">
-                          <Calendar className="h-4 w-4" />
-                          {moment(blog.published_at).format("ll")}
-                        </span>
-                        <span className="flex items-center gap-1">
-                          <Clock className="h-4 w-4" />
-                          {moment(blog.published_at).startOf("hour").fromNow()}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </article>
-              </Link>
+                </div>
+              </article>
             ))}
           </div>
         ) : (

@@ -1,51 +1,48 @@
 "use client";
-import { useEffect, useState } from "react";
-import { Users, Target, BookOpen, ArrowRight, Share2 } from "lucide-react";
+import React, { useState, useEffect } from "react";
+import { Target, BookOpen, Users, Share2 } from "lucide-react";
 
-export default function AboutPage() {
+const stats = [
+  { number: "10K+", label: "Active Readers" },
+  { number: "500+", label: "Published Articles" },
+  { number: "50+", label: "Expert Writers" },
+  { number: "15+", label: "Awards Won" },
+];
+
+const team = [
+  {
+    name: "Sarah Johnson",
+    role: "Founder & Editor-in-Chief",
+    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=500",
+    bio: "Digital wellness expert with over 10 years of experience in mindful technology use.",
+    social: { twitter: "#", linkedin: "#" },
+  },
+  {
+    name: "Michael Chen",
+    role: "Head of Content",
+    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=500",
+    bio: "Former tech journalist turned digital wellness advocate.",
+    social: { twitter: "#", linkedin: "#" },
+  },
+  {
+    name: "Emma Davis",
+    role: "Wellness Director",
+    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=500",
+    bio: "Certified mindfulness coach and mental health expert.",
+    social: { twitter: "#", linkedin: "#" },
+  },
+];
+
+export default function LandingPage() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     setIsVisible(true);
   }, []);
 
-  const stats = [
-    { number: "10K+", label: "Active Readers" },
-    { number: "500+", label: "Published Articles" },
-    { number: "50+", label: "Expert Writers" },
-    { number: "15+", label: "Awards Won" },
-  ];
-
-  const team = [
-    {
-      name: "Sarah Johnson",
-      role: "Founder & Editor-in-Chief",
-      image:
-        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=500",
-      bio: "Digital wellness expert with over 10 years of experience in mindful technology use.",
-      social: { twitter: "#", linkedin: "#" },
-    },
-    {
-      name: "Michael Chen",
-      role: "Head of Content",
-      image:
-        "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=500",
-      bio: "Former tech journalist turned digital wellness advocate.",
-      social: { twitter: "#", linkedin: "#" },
-    },
-    {
-      name: "Emma Davis",
-      role: "Wellness Director",
-      image:
-        "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=500",
-      bio: "Certified mindfulness coach and mental health expert.",
-      social: { twitter: "#", linkedin: "#" },
-    },
-  ];
-
   return (
-    <main className="min-h-screen bg-white dark:bg-gray-900">
-      <section className="relative h-[70vh] overflow-hidden">
+    <main className="min-h-screen bg-white dark:bg-gray-900 relative">
+      <section className="relative min-h-screen flex items-center pt-16">
         <div className="absolute inset-0">
           <img
             src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1200"
@@ -54,7 +51,7 @@ export default function AboutPage() {
           />
           <div className="absolute inset-0 bg-gradient-to-r from-purple-900/90 to-blue-900/90" />
         </div>
-        <div className="relative container mx-auto px-6 h-full flex items-center">
+        <div className="relative container mx-auto px-6">
           <div className="max-w-3xl">
             <h1
               className={`text-4xl md:text-6xl font-bold text-white mb-6 transition-all duration-700 ${
@@ -82,11 +79,11 @@ export default function AboutPage() {
       </section>
       <section className="py-20 bg-gray-50 dark:bg-gray-800">
         <div className="container mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
               <div
                 key={stat.label}
-                className={`text-center transition-all duration-700 ${
+                className={`text-center p-6 bg-white dark:bg-gray-900 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 ${
                   isVisible
                     ? "opacity-100 translate-y-0"
                     : "opacity-0 translate-y-10"
@@ -179,11 +176,11 @@ export default function AboutPage() {
           <h2 className="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12">
             Meet Our Team
           </h2>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {team.map((member, index) => (
               <div
                 key={member.name}
-                className={`bg-white dark:bg-gray-900 rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:-translate-y-2 ${
+                className={`group bg-white dark:bg-gray-900 rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:-translate-y-2 ${
                   isVisible
                     ? "opacity-100 translate-y-0"
                     : "opacity-0 translate-y-10"
@@ -209,12 +206,12 @@ export default function AboutPage() {
                     {member.bio}
                   </p>
                   <div className="flex items-center gap-4">
-                    <button className="text-gray-400 hover:text-purple-600 dark:hover:text-purple-400">
+                    <button className="text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors">
                       <Share2 className="h-5 w-5" />
                     </button>
                     <a
                       href={member.social.linkedin}
-                      className="text-gray-400 hover:text-purple-600 dark:hover:text-purple-400"
+                      className="text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
                     >
                       <svg
                         className="h-5 w-5"

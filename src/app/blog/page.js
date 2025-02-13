@@ -206,80 +206,75 @@ export default function Blog() {
               }
             >
               {filteredBlogs.map((blog, index) => (
-                <Link
-                  href={`/${blog.slug}`}
+                <article 
                   key={index}
-                  className="block h-full"
+                  className={`h-full flex flex-col bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all ${
+                    view === "list" ? "md:flex-row" : ""
+                  }`}
                 >
-                  <article
-                    className={`h-full flex flex-col bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all ${
-                      view === "list" ? "md:flex-row" : ""
+                  <div
+                    className={`relative ${
+                      view === "list" ? "md:w-1/3 h-48 md:h-auto" : "h-48"
                     }`}
                   >
-                    <div
-                      className={`relative ${
-                        view === "list" ? "md:w-1/3 h-48 md:h-auto" : "h-48"
-                      }`}
-                    >
-                      <img
-                        src={blog.featured_image}
-                        alt={blog.image_alt}
-                        className="w-full h-full object-cover"
-                      />
-                      <div className="absolute top-4 left-4">
-                        <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-white/90 dark:bg-gray-900/90 text-purple-600 dark:text-purple-400 text-sm font-medium">
-                          <Tag className="h-3 w-3" />
-                          {blog.category.name}
+                    <img
+                      src={blog.featured_image}
+                      alt={blog.image_alt}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+                    <div className="absolute top-4 left-4">
+                      <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-white/90 dark:bg-gray-900/90 text-purple-600 dark:text-purple-400 text-sm font-medium">
+                        <Tag className="h-3 w-3" />
+                        {blog.category.name}
+                      </span>
+                    </div>
+                  </div>
+                  <div
+                    className={`p-6 flex flex-col flex-1 ${
+                      view === "list" ? "md:w-2/3" : ""
+                    }`}
+                  >
+                    <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-2 hover:text-purple-600 dark:hover:text-purple-400">
+                      <Link href={`/${blog.slug}`}>{blog.title}</Link>
+                    </h2>
+                    <p className="text-gray-600 dark:text-gray-300 mb-4">
+                      {blog.excerpt}
+                    </p>
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {blog.tags.map((tag, index) => (
+                        <span
+                          key={index}
+                          className="px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded-md text-sm text-gray-600 dark:text-gray-400"
+                        >
+                          {tag.name}
                         </span>
-                      </div>
+                      ))}
                     </div>
-                    <div
-                      className={`p-6 flex flex-col flex-1 ${
-                        view === "list" ? "md:w-2/3" : ""
-                      }`}
-                    >
-                      <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-2 hover:text-purple-600 dark:hover:text-purple-400">
-                        {blog.title}
-                      </h2>
-                      <p className="text-gray-600 dark:text-gray-300 mb-4">
-                        {blog.excerpt}
-                      </p>
-                      <div className="flex flex-wrap gap-2 mb-4">
-                        {blog.tags.map((tag, index) => (
-                          <span
-                            key={index}
-                            className="px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded-md text-sm text-gray-600 dark:text-gray-400"
-                          >
-                            {tag.name}
-                          </span>
-                        ))}
-                      </div>
-                      <div className="flex items-center justify-between mt-auto">
-                        <div className="flex items-center gap-3">
-                          <div className="w-10 h-10 rounded-full border-2 border-purple-100 dark:border-purple-900 flex items-center justify-center bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 font-semibold">
-                            {blog.author.full_name.charAt(0)}
-                          </div>
-                          <div>
-                            <p className="text-sm font-medium text-gray-900 dark:text-white">
-                              {blog.author.full_name}
-                            </p>
-                            <p className="text-sm text-gray-500 dark:text-gray-400">
-                              {moment(blog.published_at).format("ll")}
-                            </p>
-                          </div>
+                    <div className="flex items-center justify-between mt-auto">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-full border-2 border-purple-100 dark:border-purple-900 flex items-center justify-center bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 font-semibold">
+                          {blog.author.full_name.charAt(0)}
                         </div>
-                        <div className="flex items-center gap-4">
-                          <button className="text-gray-400 hover:text-purple-600 dark:hover:text-purple-400">
-                            <Bookmark className="h-5 w-5" />
-                          </button>
-                          <button className="text-gray-400 hover:text-purple-600 dark:hover:text-purple-400">
-                            <Share2 className="h-5 w-5" />
-                          </button>
+                        <div>
+                          <p className="text-sm font-medium text-gray-900 dark:text-white">
+                            {blog.author.full_name}
+                          </p>
+                          <p className="text-sm text-gray-500 dark:text-gray-400">
+                            {moment(blog.published_at).format("ll")}
+                          </p>
                         </div>
                       </div>
+                      <div className="flex items-center gap-4">
+                        <button className="text-gray-400 hover:text-purple-600 dark:hover:text-purple-400">
+                          <Bookmark className="h-5 w-5" />
+                        </button>
+                        <button className="text-gray-400 hover:text-purple-600 dark:hover:text-purple-400">
+                          <Share2 className="h-5 w-5" />
+                        </button>
+                      </div>
                     </div>
-                  </article>
-                </Link>
+                  </div>
+                </article>
               ))}
             </div>
             {hasMore && (

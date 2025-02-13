@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Facebook, Twitter, Instagram, Linkedin, Youtube } from "lucide-react";
+import { Facebook, Twitter, Instagram } from "lucide-react";
 
 const footerLinks = {
   company: [
@@ -23,19 +23,17 @@ const footerLinks = {
 };
 
 const socialLinks = [
-  { name: "Facebook", icon: Facebook, href: "https://facebook.com/unplugwell" },
-  { name: "Twitter", icon: Twitter, href: "https://twitter.com/unplugwell" },
+  {
+    name: "Facebook",
+    icon: Facebook,
+    href: "https://www.facebook.com/people/Unplugwell-DigitalDetox/61570893369070/",
+  },
+  { name: "Twitter", icon: Twitter, href: "https://x.com/unplugwell" },
   {
     name: "Instagram",
     icon: Instagram,
-    href: "https://instagram.com/unplugwell",
+    href: "https://www.instagram.com/unplugwell/",
   },
-  {
-    name: "LinkedIn",
-    icon: Linkedin,
-    href: "https://linkedin.com/company/unplugwell",
-  },
-  { name: "YouTube", icon: Youtube, href: "https://youtube.com/unplugwell" },
 ];
 
 const Footer = () => {
