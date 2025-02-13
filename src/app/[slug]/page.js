@@ -124,7 +124,11 @@ export default function BlogDetail() {
         </div>
       </section>
       <section className="container mx-auto px-6 py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <article
+            className="lg:col-span-7 order-1 lg:order-2 prose prose-lg dark:prose-invert prose-headings:text-gray-900 dark:prose-headings:text-white prose-p:text-gray-600 dark:prose-p:text-gray-300 max-w-none"
+            dangerouslySetInnerHTML={{ __html: blog.content }}
+          />
           <aside className="lg:col-span-3 order-2 lg:order-1">
             <div className="sticky top-24 space-y-8">
               <div className="bg-gray-50 dark:bg-gray-800 rounded-xl p-6">
@@ -163,17 +167,13 @@ export default function BlogDetail() {
               )}
             </div>
           </aside>
-          <article
-            className="lg:col-span-7 order-1 lg:order-2 prose prose-lg dark:prose-invert prose-headings:text-gray-900 dark:prose-headings:text-white prose-p:text-gray-600 dark:prose-p:text-gray-300 max-w-none"
-            dangerouslySetInnerHTML={{ __html: blog.content }}
-          ></article>
           <aside className="lg:col-span-2 order-3">
             <div className="sticky top-24 space-y-8">
-              <div className="flex flex-col items-center gap-4">
-                <button className="p-3 rounded-full transition-all bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400">
+              <div className="flex flex-row lg:flex-col md:flex-row sm:flex-row justify-center items-center gap-4">
+                <button className="p-3 rounded-full transition-all bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 hover:bg-purple-200 dark:hover:bg-purple-800/50">
                   <Bookmark className="h-6 w-6" />
                 </button>
-                <button className="p-3 rounded-full transition-all bg-pink-100 dark:bg-pink-900/30 text-pink-600 dark:text-pink-400">
+                <button className="p-3 rounded-full transition-all bg-pink-100 dark:bg-pink-900/30 text-pink-600 dark:text-pink-400 hover:bg-pink-200 dark:hover:bg-pink-800/50">
                   <Heart className="h-6 w-6" />
                 </button>
                 <span className="text-sm text-gray-600 dark:text-gray-400">
