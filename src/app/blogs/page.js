@@ -5,8 +5,8 @@ import {
   Grid,
   List,
   Tag,
-  Bookmark,
-  Share2,
+  Clock,
+  BookCheck,
   ChevronDown,
 } from "lucide-react";
 import axios from "axios";
@@ -206,7 +206,7 @@ export default function Blog() {
               }
             >
               {filteredBlogs.map((blog, index) => (
-                <article 
+                <article
                   key={index}
                   className={`h-full flex flex-col bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all ${
                     view === "list" ? "md:flex-row" : ""
@@ -250,27 +250,34 @@ export default function Blog() {
                         </span>
                       ))}
                     </div>
-                    <div className="flex items-center justify-between mt-auto">
-                      <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-full border-2 border-purple-100 dark:border-purple-900 flex items-center justify-center bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 font-semibold">
+                    <div className="mt-auto">
+                      <div className="flex items-center gap-3 mb-3 sm:mb-4">
+                        <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full border-2 border-purple-100 dark:border-purple-900 flex items-center justify-center bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 font-semibold">
                           {blog.author.full_name.charAt(0)}
                         </div>
                         <div>
-                          <p className="text-sm font-medium text-gray-900 dark:text-white">
+                          <p className="text-xs sm:text-sm font-medium text-gray-900 dark:text-white">
                             {blog.author.full_name}
                           </p>
-                          <p className="text-sm text-gray-500 dark:text-gray-400">
+                          <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
                             {moment(blog.published_at).format("ll")}
                           </p>
                         </div>
                       </div>
-                      <div className="flex items-center gap-4">
-                        <button className="text-gray-400 hover:text-purple-600 dark:hover:text-purple-400">
-                          <Bookmark className="h-5 w-5" />
-                        </button>
-                        <button className="text-gray-400 hover:text-purple-600 dark:hover:text-purple-400">
-                          <Share2 className="h-5 w-5" />
-                        </button>
+                      <div className="flex flex-wrap gap-3 items-center justify-between text-xs sm:text-sm text-gray-500 dark:text-gray-400">
+                        <div className="flex items-center gap-3 sm:gap-4">
+                          <span className="flex items-center gap-1">
+                            <BookCheck className="h-3 w-3 sm:h-4 sm:w-4 text-pink-500" />
+                            Estimated Read Time :{" "}
+                            <span className="font-semibold">
+                              {blog.estimated_reading_time} min
+                            </span>
+                          </span>
+                        </div>
+                        <span className="flex items-center gap-1">
+                          <Clock className="h-3 w-3 sm:h-4 sm:w-4" />
+                          {moment(blog.published_at).startOf("hour").fromNow()}
+                        </span>
                       </div>
                     </div>
                   </div>

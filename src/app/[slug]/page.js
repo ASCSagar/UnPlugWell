@@ -4,14 +4,11 @@ import axios from "axios";
 import {
   Clock,
   Calendar,
-  Bookmark,
-  Heart,
   Facebook,
   Twitter,
   Linkedin,
   ArrowLeft,
   ArrowUp,
-  MessageCircle,
   Tag,
 } from "lucide-react";
 import { useParams } from "next/navigation";
@@ -104,10 +101,10 @@ export default function BlogDetail() {
                 </span>
               </div>
             </div>
-            <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6">
+            <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
               {blog.title}
             </h1>
-            <p className="text-sm sm:text-lg text-purple-100 mb-6 sm:mb-8">
+            <p className="text-sm md:text-lg text-purple-100 mb-6">
               {blog.excerpt}
             </p>
             <div className="flex items-center gap-3 sm:gap-4">
@@ -167,32 +164,8 @@ export default function BlogDetail() {
               )}
             </div>
           </aside>
-          <aside className="lg:col-span-2 order-3">
-            <div className="sticky top-24 space-y-8">
-              <div className="flex flex-row lg:flex-col md:flex-row sm:flex-row justify-center items-center gap-4">
-                <button className="p-3 rounded-full transition-all bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 hover:bg-purple-200 dark:hover:bg-purple-800/50">
-                  <Bookmark className="h-6 w-6" />
-                </button>
-                <button className="p-3 rounded-full transition-all bg-pink-100 dark:bg-pink-900/30 text-pink-600 dark:text-pink-400 hover:bg-pink-200 dark:hover:bg-pink-800/50">
-                  <Heart className="h-6 w-6" />
-                </button>
-                <span className="text-sm text-gray-600 dark:text-gray-400">
-                  1
-                </span>
-                <button className="p-3 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all">
-                  <MessageCircle className="h-6 w-6" />
-                </button>
-                <span className="text-sm text-gray-600 dark:text-gray-400">
-                  24
-                </span>
-              </div>
-            </div>
-          </aside>
         </div>
       </section>
-      <button className="fixed bottom-8 right-8 p-3 rounded-full bg-purple-600 text-white shadow-lg transition-all duration-300 hover:bg-purple-700 opacity-0 translate-y-10">
-        <ArrowUp className="h-6 w-6" />
-      </button>
       <section className="bg-gray-50 dark:bg-gray-800 py-16">
         <div className="container mx-auto px-6">
           <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">
@@ -226,7 +199,8 @@ export default function BlogDetail() {
                       {blog.excerpt}
                     </p>
                     <div className="flex items-center justify-between">
-                      <span className="text-sm text-gray-500 dark:text-gray-400">
+                      <span className="flex items-center gap-1 text-sm text-gray-500 dark:text-gray-400">
+                        <Clock className="h-3 w-3 sm:h-4 sm:w-4" />
                         {moment(blog.published_at).startOf("hour").fromNow()}
                       </span>
                       <button className="text-purple-600 dark:text-purple-400 hover:underline">
@@ -239,7 +213,7 @@ export default function BlogDetail() {
             </div>
           ) : (
             <div className="text-center text-gray-600 dark:text-gray-400">
-              No Blogs Available..
+              No Blogs Available.
             </div>
           )}
         </div>

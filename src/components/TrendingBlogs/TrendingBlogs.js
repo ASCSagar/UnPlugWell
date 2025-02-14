@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { TrendingUp, Clock, ArrowRight, Heart, BookOpen } from "lucide-react";
+import { TrendingUp, Clock, ArrowRight, BookCheck } from "lucide-react";
 import axios from "axios";
 import moment from "moment";
 
@@ -15,7 +15,7 @@ const TrendingBlogs = () => {
         const response = await axios.get(
           "https://unplugwell.com/blog/api/posts-popular/?site_domain=unplugwell.com"
         );
-        setTrendingBlogs(response.data.results.slice(0, 3));
+        setTrendingBlogs(response.data.results);
       } catch (error) {
         console.log("error", error);
       } finally {
@@ -42,7 +42,7 @@ const TrendingBlogs = () => {
             </h3>
           </div>
           <Link
-            href="/blog"
+            href="/blogs"
             className="group hidden md:flex items-center gap-2 px-6 py-3 bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 rounded-full font-semibold hover:bg-purple-200 dark:hover:bg-purple-900/50 transition-all duration-300"
           >
             View All Articles
@@ -93,15 +93,14 @@ const TrendingBlogs = () => {
                       </p>
                     </div>
                   </div>
-                  <div className="flex items-center justify-between text-xs sm:text-sm text-gray-500 dark:text-gray-400">
+                  <div className="flex flex-wrap gap-3 items-center justify-between text-xs sm:text-sm text-gray-500 dark:text-gray-400">
                     <div className="flex items-center gap-3 sm:gap-4">
                       <span className="flex items-center gap-1">
-                        <Heart className="h-3 w-3 sm:h-4 sm:w-4 text-pink-500" />
-                        234
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <BookOpen className="h-3 w-3 sm:h-4 sm:w-4 text-blue-500" />
-                        1532
+                        <BookCheck className="h-3 w-3 sm:h-4 sm:w-4 text-pink-500" />
+                        Estimated Read Time :{" "}
+                        <span className="font-semibold">
+                          {blog.estimated_reading_time} min
+                        </span>
                       </span>
                     </div>
                     <span className="flex items-center gap-1">
@@ -120,7 +119,7 @@ const TrendingBlogs = () => {
         )}
         <div className="mt-12 text-center md:hidden">
           <Link
-            href="/blog"
+            href="/blogs"
             className="inline-flex items-center gap-2 px-6 py-3 bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 rounded-full font-semibold hover:bg-purple-200 dark:hover:bg-purple-900/50 transition-all duration-300"
           >
             View All Articles
