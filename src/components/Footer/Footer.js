@@ -55,8 +55,18 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div>
-            <Link href="/" className="text-2xl font-bold text-white">
-              Unplugwell
+            <Link
+              href="/"
+              className="flex items-center space-x-2 text-2xl font-bold text-white"
+            >
+              <img
+                src="/unplugwell.png"
+                alt="Unplugwell"
+                className="h-8 w-auto"
+              />
+              <span className="text-xl hidden md:inline-block ml-2">
+                Unplugwell
+              </span>
             </Link>
             <p className="mt-4 text-gray-400">
               Empowering mindful technology use for a balanced digital
