@@ -33,7 +33,7 @@ const Hero = () => {
           </p>
           <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
             <Link
-              href="/blog"
+              href="/blogs"
               className="group px-8 py-3 bg-white text-purple-900 rounded-full font-semibold hover:bg-purple-100 transition-all duration-300 flex items-center"
             >
               Get Started

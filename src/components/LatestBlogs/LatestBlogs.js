@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { Calendar, Clock, Bookmark, Share2, Tag } from "lucide-react";
+import { Calendar, Clock, Tag } from "lucide-react";
 import axios from "axios";
 import moment from "moment";
 
@@ -18,7 +18,7 @@ const LatestBlogs = () => {
         const response = await axios.get(
           "https://unplugwell.com/blog/api/posts-latest/?site_domain=unplugwell.com"
         );
-        setBlogs(response.data.results.slice(0, 4));
+        setBlogs(response.data.results);
       } catch (error) {
         console.log("error", error);
       } finally {
@@ -116,14 +116,6 @@ const LatestBlogs = () => {
                       {blog.category.name}
                     </span>
                   </div>
-                  <div className="absolute top-4 right-4 flex gap-2">
-                    <button className="p-2 rounded-full bg-white/90 dark:bg-gray-900/90 text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors">
-                      <Bookmark className="h-4 w-4" />
-                    </button>
-                    <button className="p-2 rounded-full bg-white/90 dark:bg-gray-900/90 text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors">
-                      <Share2 className="h-4 w-4" />
-                    </button>
-                  </div>
                 </div>
                 <div className="relative p-6 bg-white dark:bg-gray-800 flex flex-col flex-grow">
                   <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
@@ -132,27 +124,28 @@ const LatestBlogs = () => {
                   <p className="text-gray-600 dark:text-gray-300 mb-4 flex-grow">
                     {blog.excerpt}
                   </p>
-                  <div className="flex flex-wrap gap-3 items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-full border-2 border-purple-100 dark:border-purple-900 flex items-center justify-center bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 font-semibold">
-                        {blog.author.full_name.charAt(0)}
-                      </div>
-                      <div>
-                        <p className="text-sm font-medium text-gray-900 dark:text-white">
-                          {blog.author.full_name}
-                        </p>
-                      </div>
+                  <div className="flex items-center gap-3 mb-3 sm:mb-4">
+                    <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full border-2 border-purple-100 dark:border-purple-900 flex items-center justify-center bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 font-semibold">
+                      {blog.author.full_name.charAt(0)}
                     </div>
-                    <div className="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
-                      <span className="flex items-center gap-1">
-                        <Calendar className="h-4 w-4" />
+                    <div>
+                      <p className="text-xs sm:text-sm font-medium text-gray-900 dark:text-white">
+                        {blog.author.full_name}
+                      </p>
+                      <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
                         {moment(blog.published_at).format("ll")}
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <Clock className="h-4 w-4" />
-                        {moment(blog.published_at).startOf("hour").fromNow()}
-                      </span>
+                      </p>
                     </div>
+                  </div>
+                  <div className="flex flex-wrap gap-3 items-center justify-between text-xs sm:text-sm text-gray-500 dark:text-gray-400">
+                    <span className="flex items-center gap-1">
+                      <Calendar className="h-4 w-4" />
+                      {moment(blog.published_at).format("ll")}
+                    </span>
+                    <span className="flex items-center gap-1">
+                      <Clock className="h-4 w-4" />
+                      {moment(blog.published_at).startOf("hour").fromNow()}
+                    </span>
                   </div>
                 </div>
               </article>

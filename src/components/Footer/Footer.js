@@ -1,24 +1,22 @@
+"use client";
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Facebook, Twitter, Instagram } from "lucide-react";
+import { Facebook, Twitter, Instagram, ArrowUpCircle } from "lucide-react";
 
 const footerLinks = {
   company: [
     { name: "About Us", href: "/aboutUs" },
-    { name: "Contact", href: "" },
-    { name: "Careers", href: "" },
-    { name: "Press", href: "" },
+    { name: "Contact", href: "/contactUs" },
   ],
   resources: [
-    { name: "Blog", href: "/blog" },
-    { name: "Newsletter", href: "" },
-    { name: "Events", href: "" },
+    { name: "Blogs", href: "/blogs" },
     { name: "Help Center", href: "" },
   ],
   legal: [
-    { name: "Privacy Policy", href: "" },
-    { name: "Terms of Service", href: "" },
-    { name: "Cookie Policy", href: "" },
-    { name: "Disclaimer", href: "" },
+    { name: "Privacy Policy", href: "/privacyPolicy" },
+    { name: "Terms & Conditions", href: "/terms&condition" },
+    { name: "Cookie Policy", href: "/cookies" },
+    { name: "Disclaimer", href: "/disclaimer" },
   ],
 };
 
@@ -38,12 +36,26 @@ const socialLinks = [
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const toggleVisibility = () => {
+      setIsVisible(window.scrollY > 300);
+    };
+    window.addEventListener("scroll", toggleVisibility);
+    return () => window.removeEventListener("scroll", toggleVisibility);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
-    <footer className="bg-gray-900 text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
-          <div className="col-span-1 md:col-span-2 lg:col-span-1">
-            <Link href="/" className="text-2xl font-bold">
+    <footer className="bg-gray-900 text-white relative">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div>
+            <Link href="/" className="text-2xl font-bold text-white">
               Unplugwell
             </Link>
             <p className="mt-4 text-gray-400">
@@ -51,72 +63,54 @@ const Footer = () => {
               lifestyle.
             </p>
             <div className="flex space-x-4 mt-6">
-              {socialLinks.map((social) => (
+              {socialLinks.map(({ name, icon: Icon, href }) => (
                 <a
-                  key={social.name}
-                  href={social.href}
+                  key={name}
+                  href={href}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-gray-400 hover:text-white transition-colors"
                 >
-                  <social.icon className="h-6 w-6" />
-                  <span className="sr-only">{social.name}</span>
+                  <Icon className="h-6 w-6" />
+                  <span className="sr-only">{name}</span>
                 </a>
               ))}
             </div>
           </div>
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Company</h3>
-            <ul className="space-y-2">
-              {footerLinks.company.map((link) => (
-                <li key={link.name}>
-                  <Link
-                    href={link.href}
-                    className="text-gray-400 hover:text-white transition-colors"
-                  >
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Resources</h3>
-            <ul className="space-y-2">
-              {footerLinks.resources.map((link) => (
-                <li key={link.name}>
-                  <Link
-                    href={link.href}
-                    className="text-gray-400 hover:text-white transition-colors"
-                  >
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Legal</h3>
-            <ul className="space-y-2">
-              {footerLinks.legal.map((link) => (
-                <li key={link.name}>
-                  <Link
-                    href={link.href}
-                    className="text-gray-400 hover:text-white transition-colors"
-                  >
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {Object.entries(footerLinks).map(([section, links]) => (
+            <div key={section}>
+              <h3 className="text-lg font-semibold mb-4 capitalize">
+                {section}
+              </h3>
+              <ul className="space-y-2">
+                {links.map(({ name, href }) => (
+                  <li key={name}>
+                    <Link
+                      href={href}
+                      className="text-gray-400 hover:text-white transition-colors"
+                    >
+                      {name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
-        <div className="border-t border-gray-800 pt-8 mt-8">
+        <div className="border-t border-gray-800 pt-8 mt-8 text-center">
           <p className="text-gray-400 text-sm">
             © {currentYear} Unplugwell. All rights reserved.
           </p>
         </div>
       </div>
+      {isVisible && (
+        <button
+          onClick={scrollToTop}
+          className="fixed bottom-8 right-8 p-3 rounded-full bg-purple-600 text-white shadow-lg transition-all duration-300 hover:bg-purple-700"
+        >
+          <ArrowUpCircle className="h-6 w-6" />
+        </button>
+      )}
     </footer>
   );
 };
