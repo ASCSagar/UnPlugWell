@@ -8,7 +8,6 @@ import {
   Twitter,
   Linkedin,
   ArrowLeft,
-  ArrowUp,
   Tag,
 } from "lucide-react";
 import { useParams } from "next/navigation";
@@ -45,17 +44,14 @@ export default function BlogDetail() {
       if (!category) return;
       try {
         const response = await axios.get(
-          "https://unplugwell.com/blog/api/posts-latest/?site_domain=unplugwell.com"
-        );
-        const filteredBlogs = response.data.results.filter(
-          (item) => item.category.name === category
+          `https://unplugwell.com/blog/api/posts-category/?site_domain=unplugwell.com&category_name=${category}`
         );
 
-        const shuffledBlogs = filteredBlogs
+        const filteredBlogs = response.data.results
           .sort(() => 0.5 - Math.random())
           .slice(0, 3);
 
-        setRelatedBlogs(shuffledBlogs);
+        setRelatedBlogs(filteredBlogs);
       } catch (error) {
         console.log("error", error);
       } finally {
@@ -178,37 +174,36 @@ export default function BlogDetail() {
           ) : relatedBlogs.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {relatedBlogs.map((blog, index) => (
-                <article
-                  key={index}
-                  className="bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300"
-                >
-                  <div className="relative h-48">
-                    <img
-                      src={blog.featured_image}
-                      alt={blog.image_alt}
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                  </div>
-
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 hover:text-purple-600 dark:hover:text-purple-400">
-                      <Link href={`/${blog.slug}`}>{blog.title}</Link>
-                    </h3>
-                    <p className="text-gray-600 dark:text-gray-400 mb-4">
-                      {blog.excerpt}
-                    </p>
-                    <div className="flex items-center justify-between">
-                      <span className="flex items-center gap-1 text-sm text-gray-500 dark:text-gray-400">
-                        <Clock className="h-3 w-3 sm:h-4 sm:w-4" />
-                        {moment(blog.published_at).startOf("hour").fromNow()}
-                      </span>
-                      <button className="text-purple-600 dark:text-purple-400 hover:underline">
-                        Read More
-                      </button>
+                <Link key={index} href={`/${blog.slug}`}>
+                  <article className="bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
+                    <div className="relative h-48">
+                      <img
+                        src={blog.featured_image}
+                        alt={blog.image_alt}
+                        className="w-full h-full object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                     </div>
-                  </div>
-                </article>
+
+                    <div className="p-6">
+                      <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 hover:text-purple-600 dark:hover:text-purple-400">
+                        {blog.title}
+                      </h3>
+                      <p className="text-gray-600 dark:text-gray-400 mb-4">
+                        {blog.excerpt}
+                      </p>
+                      <div className="flex items-center justify-between">
+                        <span className="flex items-center gap-1 text-sm text-gray-500 dark:text-gray-400">
+                          <Clock className="h-3 w-3 sm:h-4 sm:w-4" />
+                          {moment(blog.published_at).startOf("hour").fromNow()}
+                        </span>
+                        <button className="text-purple-600 dark:text-purple-400 hover:underline">
+                          Read More
+                        </button>
+                      </div>
+                    </div>
+                  </article>
+                </Link>
               ))}
             </div>
           ) : (
