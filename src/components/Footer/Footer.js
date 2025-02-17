@@ -68,7 +68,7 @@ const Footer = () => {
                 alt="Unplugwell"
                 className="h-8 w-auto"
               />
-              <span className="text-xl hidden md:inline-block ml-2">
+              <span className="text-xl md:inline-block ml-2">
                 Unplugwell
               </span>
             </Link>
