@@ -12,12 +12,14 @@ import {
 } from "lucide-react";
 import { useParams } from "next/navigation";
 import moment from "moment";
-import Link from "next/link";
+import BlogTicker from "@/components/RelatedArticles/BlogTicker";
+import RelatedArticles from "@/components/RelatedArticles/RelatedArticles";
 
 export default function BlogDetail() {
   const { slug } = useParams();
   const [blog, setBlog] = useState({});
   const [loading, setLoading] = useState(true);
+  const [showTicker, setShowTicker] = useState(false);
   const [relatedBlogs, setRelatedBlogs] = useState([]);
   const category = blog?.category?.name;
 
@@ -31,8 +33,6 @@ export default function BlogDetail() {
         setBlog(response.data);
       } catch (error) {
         console.log("error", error);
-      } finally {
-        console.log();
       }
     };
 
@@ -47,11 +47,7 @@ export default function BlogDetail() {
           `https://unplugwell.com/blog/api/posts-category/?site_domain=unplugwell.com&category_name=${category}`
         );
 
-        const filteredBlogs = response.data.results
-          .sort(() => 0.5 - Math.random())
-          .slice(0, 3);
-
-        setRelatedBlogs(filteredBlogs);
+        setRelatedBlogs(response.data.results);
       } catch (error) {
         console.log("error", error);
       } finally {
@@ -62,8 +58,28 @@ export default function BlogDetail() {
     fetchRelatedBlogs();
   }, [category]);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 300) {
+        setShowTicker(true);
+      } else {
+        setShowTicker(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <main className="py-12 min-h-screen bg-white dark:bg-gray-900">
+      <div
+        className={`fixed top-0 left-0 w-full z-50 transition-transform duration-300 ${
+          showTicker ? "translate-y-0" : "-translate-y-full"
+        }`}
+      >
+        <BlogTicker relatedBlogs={relatedBlogs} />
+      </div>
       <section className="relative h-[70vh] overflow-hidden">
         <img
           src={blog.featured_image}
@@ -162,57 +178,7 @@ export default function BlogDetail() {
           </aside>
         </div>
       </section>
-      <section className="bg-gray-50 dark:bg-gray-800 py-16">
-        <div className="container mx-auto px-6">
-          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">
-            Related Articles
-          </h2>
-          {loading ? (
-            <div className="flex justify-center items-center">
-              <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-purple-500"></div>
-            </div>
-          ) : relatedBlogs.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {relatedBlogs.map((blog, index) => (
-                <Link key={index} href={`/${blog.slug}`}>
-                  <article className="bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
-                    <div className="relative h-48">
-                      <img
-                        src={blog.featured_image}
-                        alt={blog.image_alt}
-                        className="w-full h-full object-cover"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                    </div>
-
-                    <div className="p-6">
-                      <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 hover:text-purple-600 dark:hover:text-purple-400">
-                        {blog.title}
-                      </h3>
-                      <p className="text-gray-600 dark:text-gray-400 mb-4">
-                        {blog.excerpt}
-                      </p>
-                      <div className="flex items-center justify-between">
-                        <span className="flex items-center gap-1 text-sm text-gray-500 dark:text-gray-400">
-                          <Clock className="h-3 w-3 sm:h-4 sm:w-4" />
-                          {moment(blog.published_at).startOf("hour").fromNow()}
-                        </span>
-                        <button className="text-purple-600 dark:text-purple-400 hover:underline">
-                          Read More
-                        </button>
-                      </div>
-                    </div>
-                  </article>
-                </Link>
-              ))}
-            </div>
-          ) : (
-            <div className="text-center text-gray-600 dark:text-gray-400">
-              No Blogs Available.
-            </div>
-          )}
-        </div>
-      </section>
+      <RelatedArticles loading={loading} relatedBlogs={relatedBlogs} />
     </main>
   );
 }
