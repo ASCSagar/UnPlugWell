@@ -1,20 +1,11 @@
 "use client";
 import { useEffect, useState } from "react";
-import {
-  Search,
-  Grid,
-  List,
-  Tag,
-  Clock,
-  BookCheck,
-  ChevronDown,
-} from "lucide-react";
+import { Search, Tag, Clock, BookCheck, ChevronDown } from "lucide-react";
 import axios from "axios";
 import moment from "moment";
 import Link from "next/link";
 
 export default function Blog() {
-  const [view, setView] = useState("grid");
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
   const [isCategoryOpen, setIsCategoryOpen] = useState(false);
@@ -94,7 +85,7 @@ export default function Blog() {
         <div className="relative container mx-auto px-6">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              Unplugwell Blog
+              Blogs
             </h1>
             <p className="text-xl text-purple-100 mb-8">
               Discover insights and strategies for maintaining digital wellness
@@ -103,7 +94,7 @@ export default function Blog() {
             <div className="relative max-w-2xl mx-auto">
               <input
                 type="text"
-                placeholder="Search articles..."
+                placeholder="Search blogs..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full pl-12 pr-4 py-4 rounded-full bg-white/10 backdrop-blur-sm text-white placeholder-purple-200 border border-white/20 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:bg-white/20"
@@ -164,30 +155,6 @@ export default function Blog() {
                 </button>
               ))}
             </div>
-            <div className="flex items-center gap-4">
-              <div className="flex items-center gap-2 rounded-lg p-1">
-                <button
-                  onClick={() => setView("grid")}
-                  className={`p-2 rounded ${
-                    view === "grid"
-                      ? "dark:text-gray-300 bg-white dark:bg-gray-600 shadow"
-                      : "hover:bg-gray-200 dark:hover:bg-gray-600"
-                  }`}
-                >
-                  <Grid className="h-4 w-4" />
-                </button>
-                <button
-                  onClick={() => setView("list")}
-                  className={`p-2 rounded ${
-                    view === "list"
-                      ? "dark:text-gray-300 bg-white dark:bg-gray-600 shadow"
-                      : "hover:bg-gray-200 dark:hover:bg-gray-600"
-                  }`}
-                >
-                  <List className="h-4 w-4" />
-                </button>
-              </div>
-            </div>
           </div>
         </div>
       </section>
@@ -198,25 +165,11 @@ export default function Blog() {
           </div>
         ) : filteredBlogs.length > 0 ? (
           <div>
-            <div
-              className={
-                view === "grid"
-                  ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-                  : "space-y-8"
-              }
-            >
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {filteredBlogs.map((blog, index) => (
                 <Link key={index} href={`/${blog.slug}`}>
-                  <article
-                    className={`h-full flex flex-col bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all ${
-                      view === "list" ? "md:flex-row" : ""
-                    }`}
-                  >
-                    <div
-                      className={`relative ${
-                        view === "list" ? "md:w-1/3 h-48 md:h-auto" : "h-48"
-                      }`}
-                    >
+                  <article className="h-full flex flex-col bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all">
+                    <div className="relative h-48">
                       <img
                         src={blog.featured_image}
                         alt={blog.image_alt}
@@ -229,11 +182,7 @@ export default function Blog() {
                         </span>
                       </div>
                     </div>
-                    <div
-                      className={`p-6 flex flex-col flex-1 ${
-                        view === "list" ? "md:w-2/3" : ""
-                      }`}
-                    >
+                    <div className="p-6 flex flex-col flex-1">
                       <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-2 hover:text-purple-600 dark:hover:text-purple-400">
                         {blog.title}
                       </h2>

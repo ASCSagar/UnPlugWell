@@ -32,24 +32,29 @@ const tickerStyles = `
   }
 `;
 
-export default function Articles({ relatedBlogs }) {
+export default function BlogTicker({ relatedBlogs }) {
   return (
-    <div className="bg-gray-200 text-gray-800 py-2 overflow-hidden">
-      <style>{tickerStyles}</style>
-      <div className="flex animate-ticker">
-        {relatedBlogs.concat(relatedBlogs).map((blog, index) => (
-          <div key={index} className="flex items-center mx-4 whitespace-nowrap">
-            <img
-              src={blog.featured_image}
-              alt={blog.image_alt}
-              className="w-16 h-16 object-cover rounded-md"
-            />
-            <Link href={blog.slug} className="ml-2 font-bold w-60 title">
-              {blog.title}
-            </Link>
-          </div>
-        ))}
+    relatedBlogs.length > 0 && (
+      <div className="bg-gray-200 text-gray-800 py-2 overflow-hidden">
+        <style>{tickerStyles}</style>
+        <div className="flex animate-ticker">
+          {relatedBlogs.concat(relatedBlogs).map((blog, index) => (
+            <div
+              key={index}
+              className="flex items-center mx-4 whitespace-nowrap"
+            >
+              <img
+                src={blog.featured_image}
+                alt={blog.image_alt}
+                className="w-10 h-10 object-cover rounded-md"
+              />
+              <Link href={blog.slug} className="ml-2 font-bold w-60 title">
+                {blog.title}
+              </Link>
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
+    )
   );
 }

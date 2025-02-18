@@ -6,11 +6,11 @@ import { Facebook, Twitter, Instagram, ArrowUpCircle } from "lucide-react";
 const footerLinks = {
   company: [
     { name: "About Us", href: "/aboutUs" },
-    { name: "Contact", href: "/contactUs" },
+    { name: "Contact Us", href: "/contactUs" },
   ],
   resources: [
     { name: "Blogs", href: "/blogs" },
-    { name: "Help Center", href: "" },
+    { name: "Categories", href: "/categories" },
   ],
   legal: [
     { name: "Privacy Policy", href: "/privacyPolicy" },
@@ -68,9 +68,7 @@ const Footer = () => {
                 alt="Unplugwell"
                 className="h-8 w-auto"
               />
-              <span className="text-xl md:inline-block ml-2">
-                Unplugwell
-              </span>
+              <span className="text-xl md:inline-block ml-2">Unplugwell</span>
             </Link>
             <p className="mt-4 text-gray-400">
               Empowering mindful technology use for a balanced digital
