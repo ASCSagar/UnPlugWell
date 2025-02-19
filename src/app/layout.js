@@ -3,9 +3,6 @@ import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 
 export const metadata = {
-  title: "Unplugwell",
-  description:
-    "Empowering mindful technology use for a balanced digital lifestyle.",
   icons: {
     icon: [
       { url: "/unplugwell.png" },
