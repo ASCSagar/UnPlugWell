@@ -80,11 +80,8 @@ export default function Categories() {
         ) : filteredCategories.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredCategories.map((category, index) => (
-              <Link href={`/categories/${category.name}`}>
-                <div
-                  key={index}
-                  className="relative group overflow-hidden rounded-2xl shadow-lg transition-all duration-500"
-                >
+              <Link key={index} href={`/categories/${category.name}`}>
+                <div className="relative group overflow-hidden bg-white dark:bg-gray-800 rounded-2xl shadow-lg transition-all duration-500">
                   <div
                     className={`absolute inset-0 bg-gradient-to-r ${
                       gradientColors[category.colorIndex]

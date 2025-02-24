@@ -96,7 +96,7 @@ export default function CategoriesBlogs() {
             {filteredBlogs.map((blog, index) => (
               <SwiperSlide key={index}>
                 <Link href={`/${blog.slug}`}>
-                  <article className="bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col h-full">
+                  <article className="h-full flex flex-col bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
                     <div className="relative h-48">
                       <img
                         src={blog.featured_image}
