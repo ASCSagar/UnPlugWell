@@ -47,7 +47,7 @@ export default function Categories() {
   );
 
   return (
-    <main className="py-12 min-h-screen bg-gray-50 dark:bg-gray-900">
+    <main className=" min-h-screen bg-gray-50 dark:bg-gray-900">
       <section className="relative py-20 bg-gradient-to-br from-purple-900 via-indigo-900 to-purple-900">
         <div className="absolute inset-0 bg-grid-white/[0.05]" />
         <div className="relative container mx-auto px-6">
@@ -74,8 +74,28 @@ export default function Categories() {
       </section>
       <section className="container mx-auto px-6 py-12">
         {loading ? (
-          <div className="flex justify-center items-center ">
-            <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-purple-500"></div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[...Array(6)].map((_, index) => (
+              <div
+                key={index}
+                className="overflow-hidden bg-white dark:bg-gray-800 rounded-2xl shadow-lg"
+              >
+                <div className="p-8 h-full min-h-[320px] flex flex-col">
+                  <div className="flex items-start justify-between mb-4">
+                    <div className="bg-gray-200 dark:bg-gray-700 p-3 rounded-xl animate-pulse">
+                      <div className="h-6 w-6"></div>
+                    </div>
+                  </div>
+                  <div className="h-8 bg-gray-200 dark:bg-gray-700 rounded animate-pulse mb-4 w-2/3"></div>
+                  <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded animate-pulse mb-2"></div>
+                  <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded animate-pulse mb-2"></div>
+                  <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded animate-pulse mb-6 w-3/4"></div>
+                  <div className="mt-auto">
+                    <div className="h-6 bg-gray-200 dark:bg-gray-700 rounded animate-pulse w-40"></div>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         ) : filteredCategories.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
