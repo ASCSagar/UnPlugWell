@@ -71,6 +71,10 @@ export default function BlogDetails({ slug }) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const handleGoBack = () => {
+    window.history.back();
+  };
+
   return (
     <main className="py-12 min-h-screen bg-white dark:bg-gray-900">
       <div
@@ -81,15 +85,6 @@ export default function BlogDetails({ slug }) {
         <BlogTicker relatedBlogs={relatedBlogs} />
       </div>
       <div className="container mx-auto px-4 md:px-6 lg:px-8 py-12">
-        <div className="mb-8">
-          <button
-            onClick={() => window.history.back()}
-            className="flex items-center gap-2 px-4 py-2 rounded-full bg-purple-600 text-white text-sm font-medium hover:bg-purple-700 transition-colors"
-          >
-            <ArrowLeft className="h-4 w-4" />
-            Back to Blogs
-          </button>
-        </div>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           <div className="lg:col-span-8 space-y-8">
             <motion.div
@@ -166,6 +161,20 @@ export default function BlogDetails({ slug }) {
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="mb-8 flex justify-end"
+              >
+                <button
+                  onClick={handleGoBack}
+                  className="flex items-center gap-2 px-4 py-2 rounded-full bg-purple-600 text-white text-sm font-medium hover:bg-purple-700 transition-colors"
+                >
+                  <ArrowLeft className="h-4 w-4" />
+                  Back to Blogs
+                </button>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: 0.3 }}
                 className="bg-gradient-to-br from-purple-50 to-indigo-50 dark:from-gray-800 dark:to-gray-900 rounded-xl p-6 shadow-md"
               >
@@ -238,6 +247,18 @@ export default function BlogDetails({ slug }) {
             </div>
           </aside>
         </div>
+      </div>
+      <div className="fixed bottom-8 left-8 z-50">
+        <motion.button
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          onClick={handleGoBack}
+          className="flex items-center gap-2 px-4 py-2 rounded-full bg-purple-600 text-white text-sm font-medium hover:bg-purple-700 transition-colors shadow-lg"
+        >
+          <ArrowLeft className="h-4 w-4" />
+          Back to Blogs
+        </motion.button>
       </div>
       <motion.div
         initial={{ opacity: 0, y: 30 }}
