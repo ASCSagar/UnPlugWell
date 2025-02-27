@@ -6,7 +6,7 @@ import {
   Calendar,
   Facebook,
   Twitter,
-  Linkedin,
+  Instagram,
   ArrowLeft,
   Tag,
   Eye,
@@ -19,6 +19,7 @@ import RelatedArticles from "../RelatedArticles/RelatedArticles";
 export default function BlogDetails({ slug }) {
   const [blog, setBlog] = useState({});
   const [loading, setLoading] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
   const [showTicker, setShowTicker] = useState(false);
   const [relatedBlogs, setRelatedBlogs] = useState([]);
   const category = blog?.category?.name;
@@ -74,6 +75,14 @@ export default function BlogDetails({ slug }) {
   const handleGoBack = () => {
     window.history.back();
   };
+
+  useEffect(() => {
+    const toggleVisibility = () => {
+      setIsVisible(window.scrollY > 300);
+    };
+    window.addEventListener("scroll", toggleVisibility);
+    return () => window.removeEventListener("scroll", toggleVisibility);
+  }, []);
 
   return (
     <main className="py-12 min-h-screen bg-white dark:bg-gray-900">
@@ -182,17 +191,33 @@ export default function BlogDetails({ slug }) {
                   Share this article
                 </h3>
                 <div className="grid grid-cols-3 gap-3">
-                  <button className="flex flex-col items-center justify-center p-3 rounded-lg bg-[#1DA1F2]/10 text-[#1DA1F2] hover:bg-[#1DA1F2]/20 transition-colors">
+                  <button
+                    className="flex flex-col items-center justify-center p-3 rounded-lg bg-[#1DA1F2]/10 text-[#1DA1F2] hover:bg-[#1DA1F2]/20 transition-colors"
+                    onClick={() =>
+                      window.open(
+                        "https://x.com/unplugwell"
+                      )
+                    }
+                  >
                     <Twitter className="h-6 w-6 mb-1" />
                     <span className="text-xs">Twitter</span>
                   </button>
-                  <button className="flex flex-col items-center justify-center p-3 rounded-lg bg-[#1877F2]/10 text-[#1877F2] hover:bg-[#1877F2]/20 transition-colors">
+                  <button className="flex flex-col items-center justify-center p-3 rounded-lg bg-[#1877F2]/10 text-[#1877F2] hover:bg-[#1877F2]/20 transition-colors" onClick={() =>
+                      window.open(
+                        "https://www.facebook.com/people/Unplugwell-DigitalDetox/61570893369070/",
+                        "_blank"
+                      )
+                    }>
                     <Facebook className="h-6 w-6 mb-1" />
                     <span className="text-xs">Facebook</span>
                   </button>
-                  <button className="flex flex-col items-center justify-center p-3 rounded-lg bg-[#0A66C2]/10 text-[#0A66C2] hover:bg-[#0A66C2]/20 transition-colors">
-                    <Linkedin className="h-6 w-6 mb-1" />
-                    <span className="text-xs">LinkedIn</span>
+                  <button className="flex flex-col items-center justify-center p-3 rounded-lg bg-[#0A66C2]/10 text-[#0A66C2] hover:bg-[#0A66C2]/20 transition-colors" onClick={() =>
+                      window.open(
+                        "https://www.instagram.com/unplugwell/"
+                      )
+                    }>
+                    <Instagram className="h-6 w-6 mb-1" />
+                    <span className="text-xs">Instagram</span>
                   </button>
                 </div>
               </motion.div>
@@ -248,18 +273,20 @@ export default function BlogDetails({ slug }) {
           </aside>
         </div>
       </div>
-      <div className="fixed bottom-8 left-8 z-50">
-        <motion.button
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          onClick={handleGoBack}
-          className="flex items-center gap-2 px-4 py-2 rounded-full bg-purple-600 text-white text-sm font-medium hover:bg-purple-700 transition-colors shadow-lg"
-        >
-          <ArrowLeft className="h-4 w-4" />
-          Back to Blogs
-        </motion.button>
-      </div>
+      {isVisible && (
+        <div className="fixed bottom-8 left-8 z-50">
+          <motion.button
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            onClick={handleGoBack}
+            className="flex items-center gap-2 px-4 py-2 rounded-full bg-purple-600 text-white text-sm font-medium hover:bg-purple-700 transition-colors shadow-lg"
+          >
+            <ArrowLeft className="h-4 w-4" />
+            Back to Blogs
+          </motion.button>
+        </div>
+      )}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
