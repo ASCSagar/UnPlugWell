@@ -85,7 +85,7 @@ export default function BlogDetails({ slug }) {
   }, []);
 
   return (
-    <main className="py-12 min-h-screen bg-white dark:bg-gray-900">
+    <main className="py-12 min-h-screen bg-white dark:bg-gray-600">
       <div
         className={`fixed top-0 left-0 w-full z-50 transition-transform duration-300 ${
           showTicker ? "translate-y-0" : "-translate-y-full"
