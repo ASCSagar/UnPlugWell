@@ -4,6 +4,9 @@ import Footer from "@/components/Footer/Footer";
 import Script from "next/script";
 
 export const metadata = {
+  title: "Unplugwell",
+  description:
+    "Empowering mindful technology use for a balanced digital lifestyle.",
   icons: {
     icon: [
       { url: "/unplugwell.png" },
@@ -28,17 +31,21 @@ export default function RootLayout({ children }) {
           dangerouslySetInnerHTML={{
             __html: `
               window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
+              function gtag() {
+                dataLayer.push(arguments);
+              }
               gtag('js', new Date());
-               gtag('config', 'G-T02TC97Y4Y');
-               `,
+              gtag('config', 'G-T02TC97Y4Y');
+            `,
           }}
         />
+        {/* Google Adsense */}
         <Script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2283636579212292"
-          crossorigin="anonymous"
+          crossOrigin="anonymous"
         />
+        {/* Google Site Verification */}
         <meta
           name="google-site-verification"
           content="-vEQwCv3N-7CYJlks9qASX9zmgZ-7sbhBPfH4JKkxT4"

@@ -28,6 +28,7 @@ export default function Categories() {
           response.data.results.map((item, index) => ({
             id: item.id,
             name: item.name,
+            slug: item.slug,
             description: item.description,
             colorIndex: index % gradientColors.length,
           }))
@@ -100,7 +101,7 @@ export default function Categories() {
         ) : filteredCategories.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredCategories.map((category, index) => (
-              <Link key={index} href={`/categories/${category.name}`}>
+              <Link key={index} href={`/categories/${category.slug}`}>
                 <div className="relative group overflow-hidden bg-white dark:bg-gray-800 rounded-2xl shadow-lg transition-all duration-500">
                   <div
                     className={`absolute inset-0 bg-gradient-to-r ${

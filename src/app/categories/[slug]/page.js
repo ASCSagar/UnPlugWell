@@ -11,7 +11,7 @@ import moment from "moment";
 import Link from "next/link";
 
 export default function CategoriesBlogs() {
-  const { name } = useParams();
+  const { slug } = useParams();
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
   const [relatedBlogs, setRelatedBlogs] = useState([]);
@@ -19,10 +19,10 @@ export default function CategoriesBlogs() {
 
   useEffect(() => {
     const fetchRelatedBlogs = async () => {
-      if (!name) return;
+      if (!slug) return;
       try {
         const response = await axios.get(
-          `https://unplugwell.com/blog/api/posts-category/?site_domain=unplugwell.com&category_name=${name}`
+          `https://unplugwell.com/blog/api/posts-category/?site_domain=unplugwell.com&category_slug=${slug}`
         );
         setRelatedBlogs(response.data.results);
         setFilteredBlogs(response.data.results);
@@ -34,7 +34,7 @@ export default function CategoriesBlogs() {
     };
 
     fetchRelatedBlogs();
-  }, [name]);
+  }, [slug]);
 
   useEffect(() => {
     if (searchQuery) {
@@ -54,7 +54,7 @@ export default function CategoriesBlogs() {
         <div className="relative container mx-auto px-6">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              {decodeURIComponent(name)}'s Blogs
+              {slug}'s Blogs
             </h1>
             <p className="text-xl text-purple-100 mb-8">
               Discover insights and strategies for maintaining digital wellness

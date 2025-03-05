@@ -11,8 +11,8 @@ export const generateMetadata = async ({ params }) => {
     const blog = await response.json();
 
     return {
-      title: blog.title,
-      description: blog.excerpt,
+      title: blog.meta_title,
+      description: blog.meta_description,
     };
   } catch (error) {
     console.log("error", error);
