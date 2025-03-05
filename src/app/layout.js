@@ -4,9 +4,6 @@ import Footer from "@/components/Footer/Footer";
 import Script from "next/script";
 
 export const metadata = {
-  title: "Unplugwell",
-  description:
-    "Empowering mindful technology use for a balanced digital lifestyle.",
   icons: {
     icon: [
       { url: "/unplugwell.png" },
