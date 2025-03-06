@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Head from "next/head";
 import {
   Clock,
   Calendar,
@@ -86,6 +87,19 @@ export default function BlogDetails({ slug }) {
 
   return (
     <main className="py-12 min-h-screen bg-white dark:bg-gray-600">
+      <Head>
+        <title>{blog.meta_title}</title>
+        <meta name="description" content={blog.meta_description} />
+        <meta property="og:title" content={blog.meta_title} />
+        <meta property="og:description" content={blog.meta_description} />
+        <meta property="og:image" content={blog.featured_image} />
+        <meta property="og:url" content={`https://unplugwell.com/${slug}`} />
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={blog.meta_title} />
+        <meta name="twitter:description" content={blog.meta_description} />
+        <meta name="twitter:image" content={blog.featured_image} />
+      </Head>
       <div
         className={`fixed top-0 left-0 w-full z-50 transition-transform duration-300 ${
           showTicker ? "translate-y-0" : "-translate-y-full"
@@ -193,29 +207,29 @@ export default function BlogDetails({ slug }) {
                 <div className="grid grid-cols-3 gap-3">
                   <button
                     className="flex flex-col items-center justify-center p-3 rounded-lg bg-[#1DA1F2]/10 text-[#1DA1F2] hover:bg-[#1DA1F2]/20 transition-colors"
-                    onClick={() =>
-                      window.open(
-                        "https://x.com/unplugwell"
-                      )
-                    }
+                    onClick={() => window.open("https://x.com/unplugwell")}
                   >
                     <Twitter className="h-6 w-6 mb-1" />
                     <span className="text-xs">Twitter</span>
                   </button>
-                  <button className="flex flex-col items-center justify-center p-3 rounded-lg bg-[#1877F2]/10 text-[#1877F2] hover:bg-[#1877F2]/20 transition-colors" onClick={() =>
+                  <button
+                    className="flex flex-col items-center justify-center p-3 rounded-lg bg-[#1877F2]/10 text-[#1877F2] hover:bg-[#1877F2]/20 transition-colors"
+                    onClick={() =>
                       window.open(
                         "https://www.facebook.com/people/Unplugwell-DigitalDetox/61570893369070/",
                         "_blank"
                       )
-                    }>
+                    }
+                  >
                     <Facebook className="h-6 w-6 mb-1" />
                     <span className="text-xs">Facebook</span>
                   </button>
-                  <button className="flex flex-col items-center justify-center p-3 rounded-lg bg-[#0A66C2]/10 text-[#0A66C2] hover:bg-[#0A66C2]/20 transition-colors" onClick={() =>
-                      window.open(
-                        "https://www.instagram.com/unplugwell/"
-                      )
-                    }>
+                  <button
+                    className="flex flex-col items-center justify-center p-3 rounded-lg bg-[#0A66C2]/10 text-[#0A66C2] hover:bg-[#0A66C2]/20 transition-colors"
+                    onClick={() =>
+                      window.open("https://www.instagram.com/unplugwell/")
+                    }
+                  >
                     <Instagram className="h-6 w-6 mb-1" />
                     <span className="text-xs">Instagram</span>
                   </button>
