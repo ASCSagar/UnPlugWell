@@ -33,8 +33,7 @@ const Hero = () => {
           <div className="absolute top-2/3 right-1/3 w-20 h-4 bg-white rounded-md transform rotate-3 animate-float animation-delay-1500"></div>
         </div>
       </div>
-      <div className="absolute inset-0 bg-[url('/noise-pattern.png')] opacity-5"></div>
-      <div className="relative container mx-auto px-6 py-16 text-center">
+      <div className="relative container mx-auto px-6 pt-24 pb-12 text-center">
         <div className="max-w-4xl mx-auto">
           <div
             className={`inline-flex items-center px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white mb-8 transform transition-all duration-700 ${
