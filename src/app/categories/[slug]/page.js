@@ -1,14 +1,11 @@
+import axios from "axios";
+import CategoriesBlogs from "@/components/Categories/CategoriesBlogs";
+
 export const generateMetadata = async ({ params }) => {
   try {
-    const response = await fetch(
+    const { data: category } = await axios.get(
       `https://unplugwell.com/blog/api/category-slug/?site_domain=unplugwell.com&category_slug=${params?.slug}`
     );
-
-    if (!response.ok) {
-      throw new Error("Failed to fetch category data");
-    }
-
-    const category = await response.json();
 
     return {
       title: category[0].meta_title,
@@ -18,8 +15,6 @@ export const generateMetadata = async ({ params }) => {
     console.log("error", error);
   }
 };
-
-import CategoriesBlogs from "@/components/Categories/CategoriesBlogs";
 
 export default function CategoryDetails({ params }) {
   return <CategoriesBlogs slug={params.slug} />;

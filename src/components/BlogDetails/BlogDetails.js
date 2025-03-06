@@ -86,7 +86,7 @@ export default function BlogDetails({ slug }) {
   }, []);
 
   return (
-    <main className="py-12 min-h-screen bg-white dark:bg-gray-600">
+    <main className="pt-12 min-h-screen bg-white dark:bg-gray-600">
       <Head>
         <title>{blog.meta_title}</title>
         <meta name="description" content={blog.meta_description} />
