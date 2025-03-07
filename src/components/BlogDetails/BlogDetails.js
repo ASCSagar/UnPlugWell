@@ -1,7 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import Head from "next/head";
 import {
   Clock,
   Calendar,
@@ -88,19 +87,6 @@ export default function BlogDetails({ slug }) {
 
   return (
     <main className="pt-12 min-h-screen bg-gradient-to-r from-indigo-50/30 to-pink-50/30">
-      <Head>
-        <title>{blog.meta_title}</title>
-        <meta name="description" content={blog.meta_description} />
-        <meta property="og:title" content={blog.meta_title} />
-        <meta property="og:description" content={blog.meta_description} />
-        <meta property="og:image" content={blog.featured_image} />
-        <meta property="og:url" content={`https://unplugwell.com/${slug}`} />
-        <meta property="og:type" content="article" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={blog.meta_title} />
-        <meta name="twitter:description" content={blog.meta_description} />
-        <meta name="twitter:image" content={blog.featured_image} />
-      </Head>
       <div
         className={`fixed top-0 left-0 w-full z-50 transition-transform duration-300 ${
           showTicker ? "translate-y-0" : "-translate-y-full"
@@ -174,7 +160,7 @@ export default function BlogDetails({ slug }) {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
-              className="prose prose-lg prose-headings:text-gray-900 prose-p:text-gray-600 max-w-none"
+              className="prose prose-lg prose-headings:text-gray-900 prose-p:text-gray-600 max-w-none bg-gradient-to-br from-indigo-50 to-pink-50 rounded-xl p-6 shadow-md"
               dangerouslySetInnerHTML={{ __html: blog.content }}
             />
           </div>

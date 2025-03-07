@@ -39,17 +39,8 @@ const Hero = () => {
             <Sparkles className="h-4 w-4 mr-2 animate-pulse" />
             <span className="text-sm font-medium">Detox Your Digital Life</span>
           </div>
-          <h1
-            className={`text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 transform transition-all duration-700 delay-100 ${
-              isVisible
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 -translate-y-4"
-            }`}
-          >
-            Embrace the Art of
-            <span className="block mt-2 bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-300 bg-clip-text text-transparent animate-gradient-x">
-              Digital Free Life
-            </span>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 transform transition-all duration-700 delay-100">
+            Embrace the Art of Digital Free Life
           </h1>
           <p
             className={`text-lg md:text-xl text-purple-100 mb-8 max-w-2xl mx-auto transform transition-all duration-700 delay-200 ${
