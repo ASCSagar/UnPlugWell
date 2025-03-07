@@ -46,7 +46,7 @@ export default function CategoriesBlogs({ slug }) {
   }, [searchQuery, relatedBlogs]);
 
   return (
-    <main className="py-12 min-h-screen bg-gray-50 dark:bg-gray-900">
+    <main className="py-12 min-h-screen bg-gradient-to-r from-indigo-50 to-pink-50">
       <section className="relative py-20 bg-gradient-to-br from-purple-900 via-indigo-900 to-purple-900">
         <div className="absolute inset-0 bg-grid-white/[0.05]" />
         <div className="relative container mx-auto px-6">
@@ -97,7 +97,7 @@ export default function CategoriesBlogs({ slug }) {
             {filteredBlogs.map((blog, index) => (
               <SwiperSlide key={index}>
                 <Link href={`/${blog.slug}`}>
-                  <article className="h-full flex flex-col bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
+                  <article className="h-full flex flex-col bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
                     <div className="relative h-48">
                       <img
                         src={blog.featured_image}
@@ -107,31 +107,31 @@ export default function CategoriesBlogs({ slug }) {
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                     </div>
                     <div className="p-6 flex flex-col flex-grow">
-                      <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 hover:text-purple-600 dark:hover:text-purple-400">
+                      <h3 className="text-xl font-bold text-gray-900 mb-2 hover:text-purple-600">
                         {blog.title}
                       </h3>
-                      <p className="text-gray-600 dark:text-gray-400 flex-grow">
+                      <p className="text-gray-600 flex-grow">
                         {blog.excerpt}
                       </p>
                       <div className="flex items-center gap-3 my-3">
-                        <div className="w-8 h-8 rounded-full border-2 border-purple-100 dark:border-purple-900 flex items-center justify-center bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 font-semibold">
+                        <div className="w-8 h-8 rounded-full border-2 border-purple-100 flex items-center justify-center bg-purple-100 text-purple-600 font-semibold">
                           {blog.author.full_name.charAt(0)}
                         </div>
                         <div>
-                          <p className="text-xs font-medium text-gray-900 dark:text-white">
+                          <p className="text-xs font-medium text-gray-900">
                             {blog.author.full_name}
                           </p>
-                          <p className="text-xs text-gray-500 dark:text-gray-400">
+                          <p className="text-xs text-gray-500">
                             {moment(blog.published_at).format("ll")}
                           </p>
                         </div>
                       </div>
                       <div className="flex items-center justify-between">
-                        <span className="flex items-center gap-1 text-sm text-gray-500 dark:text-gray-400">
+                        <span className="flex items-center gap-1 text-sm text-gray-500">
                           <Clock className="h-4 w-4" />
                           {moment(blog.published_at).startOf("hour").fromNow()}
                         </span>
-                        <button className="text-purple-600 dark:text-purple-400">
+                        <button className="text-purple-600">
                           Read More
                         </button>
                       </div>
@@ -142,7 +142,7 @@ export default function CategoriesBlogs({ slug }) {
             ))}
           </Swiper>
         ) : (
-          <div className="text-center text-gray-600 dark:text-gray-400">
+          <div className="text-center text-gray-600">
             No Blogs Available.
           </div>
         )}

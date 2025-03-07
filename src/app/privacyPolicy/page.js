@@ -1,23 +1,23 @@
 export default function PrivacyPolicy() {
   return (
-    <main className="py-12 min-h-screen bg-gray-50 dark:bg-gray-900 px-4 sm:px-6 lg:px-12">
+    <main className="py-12 min-h-screen bg-gradient-to-r from-indigo-50 to-pink-50 px-4 sm:px-6 lg:px-12">
       <section className="relative py-16 sm:py-20">
         <div className="absolute inset-0 bg-grid-white/[0.05]" />
         <div className="relative max-w-7xl mx-auto">
           <div className="text-center mb-8">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-indigo-600 to-pink-600 bg-clip-text text-transparent">
               Privacy Policy
             </h1>
           </div>
           <div className="space-y-6">
-            <div className="bg-white dark:bg-gray-800 shadow-md rounded-lg overflow-hidden">
-              <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
-                <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
+            <div className="bg-white shadow-md rounded-lg overflow-hidden">
+              <div className="px-6 py-4 border-b border-gray-200">
+                <h2 className="text-xl font-semibold text-gray-900">
                   1. Introduction
                 </h2>
               </div>
               <div className="p-6">
-                <p className="text-gray-600 dark:text-gray-400">
+                <p className="text-gray-600">
                   Welcome to UnplugWell.com (hereinafter referred to as "the
                   Site," "we," "us," or "our"). We are committed to protecting
                   your privacy and ensuring the security of your personal
@@ -29,18 +29,18 @@ export default function PrivacyPolicy() {
               </div>
             </div>
 
-            <div className="bg-white dark:bg-gray-800 shadow-md rounded-lg overflow-hidden">
-              <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
-                <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
+            <div className="bg-white shadow-md rounded-lg overflow-hidden">
+              <div className="px-6 py-4 border-b border-gray-200">
+                <h2 className="text-xl font-semibold text-gray-900">
                   2. Information We Collect
                 </h2>
               </div>
               <div className="p-6">
                 <div className="space-y-4">
-                  <h3 className="font-semibold text-gray-900 dark:text-white">
+                  <h3 className="font-semibold text-gray-900">
                     Personal Information :
                   </h3>
-                  <ul className="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-2">
+                  <ul className="list-disc list-inside text-gray-600 space-y-2">
                     <li>
                       When you subscribe to our newsletter, leave comments, or
                       contact us through our contact form, we may collect your
@@ -54,10 +54,10 @@ export default function PrivacyPolicy() {
                     </li>
                   </ul>
 
-                  <h3 className="font-semibold text-gray-900 dark:text-white mt-4">
+                  <h3 className="font-semibold text-gray-900 mt-4">
                     Non-Personal Information :
                   </h3>
-                  <ul className="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-2">
+                  <ul className="list-disc list-inside text-gray-600 space-y-2">
                     <li>
                       We automatically collect certain non-personal information
                       when you visit our Site, including your IP address,
@@ -70,10 +70,10 @@ export default function PrivacyPolicy() {
                     </li>
                   </ul>
 
-                  <h3 className="font-semibold text-gray-900 dark:text-white mt-4">
-                    Comments :
+                  <h3 className="font-semibold text-gray-900 mt-4">
+                    Comments :    
                   </h3>
-                  <ul className="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-2">
+                  <ul className="list-disc list-inside text-gray-600 space-y-2">
                     <li>
                       When visitors leave comments on the site we collect the
                       data shown in the comments form, and also the visitor’s IP
@@ -91,18 +91,18 @@ export default function PrivacyPolicy() {
               </div>
             </div>
 
-            <div className="bg-white dark:bg-gray-800 shadow-md rounded-lg overflow-hidden">
-              <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
-                <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
+            <div className="bg-white shadow-md rounded-lg overflow-hidden">
+              <div className="px-6 py-4 border-b border-gray-200">
+                <h2 className="text-xl font-semibold text-gray-900">
                   3. How We Use Your Information
                 </h2>
               </div>
               <div className="p-6">
                 <div className="space-y-4">
-                  <p className="font-semibold text-gray-900 dark:text-white">
+                  <p className="font-semibold text-gray-900">
                     We may use your information for the following purposes :
                   </p>
-                  <ul className="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-2">
+                  <ul className="list-disc list-inside text-gray-600 space-y-2">
                     <li>To provide and maintain our Site.</li>
                     <li>
                       To send you newsletters and updates (if you have
@@ -120,15 +120,15 @@ export default function PrivacyPolicy() {
               </div>
             </div>
 
-            <div className="bg-white dark:bg-gray-800 shadow-md rounded-lg overflow-hidden">
-              <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
-                <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
+            <div className="bg-white shadow-md rounded-lg overflow-hidden">
+              <div className="px-6 py-4 border-b border-gray-200">
+                <h2 className="text-xl font-semibold text-gray-900">
                   4. Cookies and Tracking Technologies
                 </h2>
               </div>
               <div className="p-6">
                 <div className="space-y-4">
-                  <ul className="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-2">
+                  <ul className="list-disc list-inside text-gray-600 space-y-2">
                     <li>
                       {" "}
                       We use cookies and similar tracking technologies to
@@ -137,7 +137,7 @@ export default function PrivacyPolicy() {
                       recognize your browser and remember certain information.
                     </li>
                   </ul>
-                  <ul className="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-2">
+                  <ul className="list-disc list-inside text-gray-600 space-y-2">
                     <li>
                       You can control cookies through your browser settings and
                       opt-out of certain tracking technologies. However,
@@ -145,7 +145,7 @@ export default function PrivacyPolicy() {
                       features of our Site.
                     </li>
                   </ul>
-                  <ul className="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-2">
+                  <ul className="list-disc list-inside text-gray-600 space-y-2">
                     <li>
                       We may use third party analytics tools, such as Google
                       Analytics, which also use cookies, to collect information
@@ -156,34 +156,34 @@ export default function PrivacyPolicy() {
               </div>
             </div>
 
-            <div className="bg-white dark:bg-gray-800 shadow-md rounded-lg overflow-hidden">
-              <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
-                <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
+            <div className="bg-white shadow-md rounded-lg overflow-hidden">
+              <div className="px-6 py-4 border-b border-gray-200">
+                <h2 className="text-xl font-semibold text-gray-900">
                   5. Third-Party Services
                 </h2>
               </div>
               <div className="p-6">
                 <div className="space-y-4">
-                  <ul className="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-2">
+                  <ul className="list-disc list-inside text-gray-600 space-y-2">
                     <li>
                       We may use third-party services, such as email marketing
                       platforms, analytics providers, and social media plugins,
                       to operate and improve our Site.
                     </li>
                   </ul>
-                  <ul className="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-2">
+                  <ul className="list-disc list-inside text-gray-600 space-y-2">
                     <li>
                       These third-party services may have their own privacy
                       policies, which we encourage you to review.
                     </li>
                   </ul>
-                  <ul className="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-2">
+                  <ul className="list-disc list-inside text-gray-600 space-y-2">
                     <li>
                       Embedded content from other websites behaves in the exact
                       same way as if the visitor has visited the other website.
                     </li>
                   </ul>
-                  <ul className="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-2">
+                  <ul className="list-disc list-inside text-gray-600 space-y-2">
                     <li>
                       These websites may collect data about you, use cookies,
                       embed additional third-party tracking, and monitor your
@@ -196,21 +196,21 @@ export default function PrivacyPolicy() {
               </div>
             </div>
 
-            <div className="bg-white dark:bg-gray-800 shadow-md rounded-lg overflow-hidden">
-              <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
-                <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
+            <div className="bg-white shadow-md rounded-lg overflow-hidden">
+              <div className="px-6 py-4 border-b border-gray-200">
+                <h2 className="text-xl font-semibold text-gray-900">
                   6. Data Security
                 </h2>
               </div>
               <div className="p-6">
                 <div className="space-y-4">
-                  <ul className="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-2">
+                  <ul className="list-disc list-inside text-gray-600 space-y-2">
                     <li>
                       We take reasonable measures to protect your personal
                       information from unauthorized access, use, or disclosure.
                     </li>
                   </ul>
-                  <ul className="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-2">
+                  <ul className="list-disc list-inside text-gray-600 space-y-2">
                     <li>
                       However, no method of transmission over the internet or
                       electronic storage is 100% secure, and we cannot guarantee
@@ -221,15 +221,15 @@ export default function PrivacyPolicy() {
               </div>
             </div>
 
-            <div className="bg-white dark:bg-gray-800 shadow-md rounded-lg overflow-hidden">
-              <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
-                <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
+            <div className="bg-white shadow-md rounded-lg overflow-hidden">
+              <div className="px-6 py-4 border-b border-gray-200">
+                <h2 className="text-xl font-semibold text-gray-900">
                   7. Data Retention
                 </h2>
               </div>
               <div className="p-6">
                 <div className="space-y-4">
-                  <ul className="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-2">
+                  <ul className="list-disc list-inside text-gray-600 space-y-2">
                     <li>
                       We will retain your personal information for as long as
                       necessary to fulfill the purposes outlined in this Privacy
@@ -237,7 +237,7 @@ export default function PrivacyPolicy() {
                       permitted by law
                     </li>
                   </ul>
-                  <ul className="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-2">
+                  <ul className="list-disc list-inside text-gray-600 space-y-2">
                     <li>
                       Comments and their metadata are retained indefinitely.
                       This is so we can recognize and approve any follow-up
@@ -249,22 +249,22 @@ export default function PrivacyPolicy() {
               </div>
             </div>
 
-            <div className="bg-white dark:bg-gray-800 shadow-md rounded-lg overflow-hidden">
-              <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
-                <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
+            <div className="bg-white shadow-md rounded-lg overflow-hidden">
+              <div className="px-6 py-4 border-b border-gray-200">
+                <h2 className="text-xl font-semibold text-gray-900">
                   8. Children's Privacy
                 </h2>
               </div>
               <div className="p-6">
                 <div className="space-y-4">
-                  <ul className="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-2">
+                  <ul className="list-disc list-inside text-gray-600 space-y-2">
                     <li>
                       Our Site is not intended for children under the age of 13.
                       We do not knowingly collect personal information from
                       children under 13.
                     </li>
                   </ul>
-                  <ul className="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-2">
+                  <ul className="list-disc list-inside text-gray-600 space-y-2">
                     <li>
                       If you are a parent or guardian and believe that your
                       child has provided us with personal information, please
@@ -275,27 +275,27 @@ export default function PrivacyPolicy() {
               </div>
             </div>
 
-            <div className="bg-white dark:bg-gray-800 shadow-md rounded-lg overflow-hidden">
-              <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
-                <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
+            <div className="bg-white shadow-md rounded-lg overflow-hidden">
+              <div className="px-6 py-4 border-b border-gray-200">
+                <h2 className="text-xl font-semibold text-gray-900">
                   9. Your Rights
                 </h2>
               </div>
               <div className="p-6">
                 <div className="space-y-4">
-                  <ul className="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-2">
+                  <ul className="list-disc list-inside text-gray-600 space-y-2">
                     <li>
                       You have the right to access, correct, or delete your
                       personal information.
                     </li>
                   </ul>
-                  <ul className="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-2">
+                  <ul className="list-disc list-inside text-gray-600 space-y-2">
                     <li>
                       You may also have the right to object to or restrict the
                       processing of your personal information.
                     </li>
                   </ul>
-                  <ul className="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-2">
+                  <ul className="list-disc list-inside text-gray-600 space-y-2">
                     <li>
                       If you have an account on this site, or have left
                       comments, you can request to receive an exported file of
@@ -306,7 +306,7 @@ export default function PrivacyPolicy() {
                       administrative, legal, or security purposes.{" "}
                     </li>
                   </ul>
-                  <ul className="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-2">
+                  <ul className="list-disc list-inside text-gray-600 space-y-2">
                     <li>
                       To exercise these rights, please contact us using the
                       contact information provided below.
@@ -316,22 +316,22 @@ export default function PrivacyPolicy() {
               </div>
             </div>
 
-            <div className="bg-white dark:bg-gray-800 shadow-md rounded-lg overflow-hidden">
-              <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
-                <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
+            <div className="bg-white shadow-md rounded-lg overflow-hidden">
+              <div className="px-6 py-4 border-b border-gray-200">
+                <h2 className="text-xl font-semibold text-gray-900">
                   10. Changes to This Privacy Policy
                 </h2>
               </div>
               <div className="p-6">
                 <div className="space-y-4">
-                  <ul className="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-2">
+                  <ul className="list-disc list-inside text-gray-600 space-y-2">
                     <li>
                       We may update this Privacy Policy from time to time. We
                       will notify you of any changes by posting the new Privacy
                       Policy on this page.  
                     </li>
                   </ul>
-                  <ul className="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-2">
+                  <ul className="list-disc list-inside text-gray-600 space-y-2">
                     <li>
                       You are advised to review this Privacy Policy periodically
                       for any changes.
@@ -341,18 +341,18 @@ export default function PrivacyPolicy() {
               </div>
             </div>
 
-            <div className="bg-white dark:bg-gray-800 shadow-md rounded-lg overflow-hidden">
-              <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
-                <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
+            <div className="bg-white shadow-md rounded-lg overflow-hidden">
+              <div className="px-6 py-4 border-b border-gray-200">
+                <h2 className="text-xl font-semibold text-gray-900">
                   11. Contact Us
                 </h2>
               </div>
               <div className="p-6">
-                <p className="text-gray-600 dark:text-gray-400">
+                <p className="text-gray-600 ">
                   For any questions or concerns about this Privacy Policy,
                   please contact us:
                 </p>
-                <p className="mt-2 text-purple-600 dark:text-purple-400">
+                <p className="mt-2 text-purple-600">
                   Email: unplugwell@gmail.com
                   <br />
                   Contact: Available on UnplugWell.com
@@ -360,14 +360,14 @@ export default function PrivacyPolicy() {
               </div>
             </div>
 
-            <div className="bg-white dark:bg-gray-800 shadow-md rounded-lg overflow-hidden">
-              <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
-                <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
+            <div className="bg-white shadow-md rounded-lg overflow-hidden">
+              <div className="px-6 py-4 border-b border-gray-200">
+                <h2 className="text-xl font-semibold text-gray-900">
                   12. GDPR Compliance (If Applicable)
                 </h2>
               </div>
               <div className="p-6">
-                <p className="text-gray-600 dark:text-gray-400">
+                <p className="text-gray-600 ">
                   If you are located in the European Economic Area (EEA), your
                   data is protected under the General Data Protection Regulation
                   (GDPR). In addition to the rights listed above, you have the
@@ -376,14 +376,14 @@ export default function PrivacyPolicy() {
               </div>
             </div>
 
-            <div className="bg-white dark:bg-gray-800 shadow-md rounded-lg overflow-hidden">
-              <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
-                <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
+            <div className="bg-white shadow-md rounded-lg overflow-hidden">
+              <div className="px-6 py-4 border-b border-gray-200">
+                <h2 className="text-xl font-semibold text-gray-900">
                   13. CCPA Compliance (If Applicable)
                 </h2>
               </div>
               <div className="p-6">
-                <p className="text-gray-600 dark:text-gray-400">
+                <p className="text-gray-600 ">
                   If you are a resident of California, you have certain rights
                   under the California Consumer Privacy Act (CCPA). This
                   includes the right to know what personal information we
