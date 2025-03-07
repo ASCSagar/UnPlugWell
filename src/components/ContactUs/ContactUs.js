@@ -5,9 +5,7 @@ import {
   MessageSquare,
   Send,
   User,
-  Instagram,
-  Twitter,
-  Facebook,
+  Sparkles,
   PhoneCall,
   MapPin,
   ArrowRight,
@@ -31,18 +29,18 @@ const ContactUs = () => {
   };
 
   return (
-    <div className="py-12 min-h-screen bg-gray-50 dark:bg-gray-900 px-4 sm:px-6 lg:px-8">
+    <div className="py-12 min-h-screen bg-gradient-to-r from-indigo-50 to-pink-50 px-4 sm:px-6 lg:px-8">
       <div className="relative py-16 sm:py-20">
         <div className="absolute inset-0 bg-grid-white/[0.05]" />
         <div className="relative max-w-7xl mx-auto">
           <div className="text-center mb-12 sm:mb-16">
-            <div className="inline-block py-1 px-3 rounded-full bg-gray-200 text-gray-800 font-medium text-sm mb-4">
+            <div className="inline-block border border-purple-600 py-1 px-3 rounded-full bg-gradient-to-r from-indigo-600 to-pink-600 bg-clip-text text-transparent font-medium text-sm mb-4">
               GET IN TOUCH
             </div>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-indigo-600 to-pink-600 bg-clip-text text-transparent mb-4">
               We're Here to Support Your Digital Wellness Journey
             </h1>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               Have questions about digital detox or need personalized guidance?
               Our team is ready to help you create a healthier relationship with
               technology.
@@ -50,8 +48,8 @@ const ContactUs = () => {
           </div>
 
           <div className="grid md:grid-cols-12 gap-8 lg:gap-10 items-start">
-            <div className="md:col-span-7 bg-white dark:bg-gray-800 rounded-3xl shadow-xl p-6 sm:p-8 transform transition-all duration-500 hover:shadow-2xl">
-              <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-6">
+            <div className="md:col-span-7 bg-white rounded-3xl shadow-xl p-6 sm:p-8 transform transition-all duration-500 hover:shadow-2xl">
+              <h2 className="text-2xl font-bold text-gray-800 mb-6">
                 Send Us a Message
               </h2>
               <form onSubmit={handleSubmit}>
@@ -59,7 +57,7 @@ const ContactUs = () => {
                   <div>
                     <label
                       htmlFor="name"
-                      className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+                      className="block text-sm font-medium text-gray-700 mb-2"
                     >
                       Your Name
                     </label>
@@ -73,7 +71,7 @@ const ContactUs = () => {
                         name="name"
                         value={formData.name}
                         onChange={handleChange}
-                        className="pl-10 w-full py-3 px-4 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-gray-200 dark:focus:ring-gray-500 focus:border-gray-300 dark:focus:border-gray-500 transition-colors"
+                        className="pl-10 w-full py-3 px-4 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-gray-200 focus:border-gray-300 transition-colors"
                         placeholder="Jane Doe"
                       />
                     </div>
@@ -81,7 +79,7 @@ const ContactUs = () => {
                   <div>
                     <label
                       htmlFor="email"
-                      className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+                      className="block text-sm font-medium text-gray-700 mb-2"
                     >
                       Email Address
                     </label>
@@ -95,7 +93,7 @@ const ContactUs = () => {
                         name="email"
                         value={formData.email}
                         onChange={handleChange}
-                        className="pl-10 w-full py-3 px-4 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-gray-200 dark:focus:ring-gray-500 focus:border-gray-300 dark:focus:border-gray-500 transition-colors"
+                        className="pl-10 w-full py-3 px-4 bg-gray-50 border-gray-200 rounded-lg focus:ring-2 focus:ring-gray-200 focus:border-gray-300 transition-colors"
                         placeholder="you@example.com"
                       />
                     </div>
@@ -105,7 +103,7 @@ const ContactUs = () => {
                 <div className="mb-6">
                   <label
                     htmlFor="subject"
-                    className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+                    className="block text-sm font-medium text-gray-700 mb-2"
                   >
                     Subject (Optional)
                   </label>
@@ -119,7 +117,7 @@ const ContactUs = () => {
                       name="subject"
                       value={formData.subject}
                       onChange={handleChange}
-                      className="pl-10 w-full py-3 px-4 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-gray-200 dark:focus:ring-gray-500 focus:border-gray-300 dark:focus:border-gray-500 transition-colors"
+                      className="pl-10 w-full py-3 px-4 bg-gray-50 border-gray-200 rounded-lg focus:ring-2 focus:ring-gray-200 focus:border-gray-300 transition-colors"
                       placeholder="How can we help you?"
                     />
                   </div>
@@ -128,7 +126,7 @@ const ContactUs = () => {
                 <div className="mb-6">
                   <label
                     htmlFor="message"
-                    className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+                    className="block text-sm font-medium text-gray-700 mb-2"
                   >
                     Your Message
                   </label>
@@ -138,7 +136,7 @@ const ContactUs = () => {
                     value={formData.message}
                     onChange={handleChange}
                     rows="5"
-                    className="w-full py-3 px-4 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-gray-200 dark:focus:ring-gray-500 focus:border-gray-300 dark:focus:border-gray-500 transition-colors"
+                    className="w-full py-3 px-4 bg-gray-50  border-gray-200 rounded-lg focus:ring-2 focus:ring-gray-200 focus:border-gray-300 transition-colors"
                     placeholder="Tell us how we can help with your digital wellness journey..."
                   ></textarea>
                 </div>
@@ -153,44 +151,44 @@ const ContactUs = () => {
             </div>
 
             <div className="md:col-span-5 space-y-8">
-              <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-xl p-6 sm:p-8 text-white transform transition-all duration-500 hover:scale-105">
+              <div className="bg-white rounded-3xl shadow-xl p-6 sm:p-8 text-gray-800 transform transition-all duration-500 hover:scale-105">
                 <h3 className="text-xl font-bold mb-6">Contact Information</h3>
                 <div className="space-y-6">
                   <div className="flex items-start">
-                    <div className="p-3 bg-purple-600 dark:bg-purple-700 rounded-full mr-4">
+                    <div className="p-3 bg-purple-600 rounded-full mr-4">
                       <Mail className="h-6 w-6 text-white" />
                     </div>
                     <div>
-                      <p className="text-white/70 text-sm">Email us at</p>
+                      <p className="text-gray/70 text-sm">Email us at</p>
                       <a
                         href="mailto:support@unplugwell.com"
-                        className="text-white hover:underline"
+                        className="text-gray-700 hover:underline"
                       >
                         support@unplugwell.com
                       </a>
                     </div>
                   </div>
                   <div className="flex items-start">
-                    <div className="p-3 bg-purple-600 dark:bg-purple-700 rounded-full mr-4">
+                    <div className="p-3 bg-purple-600 rounded-full mr-4">
                       <PhoneCall className="h-6 w-6 text-white" />
                     </div>
                     <div>
-                      <p className="text-white/70 text-sm">Call us</p>
+                      <p className="text-gray/70 text-sm">Call us</p>
                       <a
                         href="tel:+18005551234"
-                        className="text-white hover:underline"
+                        className="text-gray-700 hover:underline"
                       >
                         +1 (800) 555-1234
                       </a>
                     </div>
                   </div>
                   <div className="flex items-start">
-                    <div className="p-3 bg-purple-600 dark:bg-purple-700 rounded-full mr-4">
+                    <div className="p-3 bg-purple-600 rounded-full mr-4">
                       <MapPin className="h-6 w-6 text-white" />
                     </div>
                     <div>
-                      <p className="text-white/70 text-sm">Visit our office</p>
-                      <address className="not-italic text-white">
+                      <p className="text-gray/70 text-sm">Visit our office</p>
+                      <address className="not-italic text-gray-700">
                         123 Digital Detox St.
                         <br />
                         Mindful City, CA 94103
@@ -198,74 +196,46 @@ const ContactUs = () => {
                     </div>
                   </div>
                 </div>
-                <div className="mt-8 pt-6 border-t border-white/20">
-                  <p className="text-white/70 text-sm mb-4">
-                    Follow us on social media
-                  </p>
-                  <div className="flex space-x-4">
-                    <a
-                      href="https://www.instagram.com/unplugwell/"
-                      className="bg-white/10 p-3 rounded-full hover:bg-white/20 transition-colors"
-                      aria-label="Instagram"
-                    >
-                      <Instagram className="h-5 w-5 text-white" />
-                    </a>
-                    <a
-                      href="https://x.com/unplugwell"
-                      className="bg-white/10 p-3 rounded-full hover:bg-white/20 transition-colors"
-                      aria-label="Twitter"
-                    >
-                      <Twitter className="h-5 w-5 text-white" />
-                    </a>
-                    <a
-                      href="https://www.facebook.com/people/Unplugwell-DigitalDetox/61570893369070/"
-                      className="bg-white/10 p-3 rounded-full hover:bg-white/20 transition-colors"
-                      aria-label="Facebook"
-                    >
-                      <Facebook className="h-5 w-5 text-white" />
-                    </a>
-                  </div>
-                </div>
               </div>
 
-              <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-lg p-6 sm:p-8 transform transition-all duration-500 hover:shadow-xl">
-                <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-4">
+              <div className="bg-white rounded-3xl shadow-lg p-6 sm:p-8 transform transition-all duration-500 hover:shadow-xl">
+                <h3 className="text-xl font-bold text-gray-800 mb-4">
                   Frequently Asked Questions
                 </h3>
                 <ul className="space-y-3">
                   <li>
                     <a
                       href="/faq#detox-plan"
-                      className="flex items-center text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white group"
+                      className="flex items-center text-gray-700 hover:text-gray-900  group"
                     >
-                      <ArrowRight className="h-4 w-4 mr-2 text-gray-500 dark:text-gray-400 transform transition-transform group-hover:translate-x-1" />
+                      <ArrowRight className="h-4 w-4 mr-2 text-gray-500 transform transition-transform group-hover:translate-x-1" />
                       <span>How do I create a digital detox plan?</span>
                     </a>
                   </li>
                   <li>
                     <a
                       href="/faq#workplace"
-                      className="flex items-center text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white group"
+                      className="flex items-center text-gray-700 hover:text-gray-900  group"
                     >
-                      <ArrowRight className="h-4 w-4 mr-2 text-gray-500 dark:text-gray-400 transform transition-transform group-hover:translate-x-1" />
+                      <ArrowRight className="h-4 w-4 mr-2 text-gray-500 transform transition-transform group-hover:translate-x-1" />
                       <span>Digital wellness solutions for workplaces</span>
                     </a>
                   </li>
                   <li>
                     <a
                       href="/faq#screen-time"
-                      className="flex items-center text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white group"
+                      className="flex items-center text-gray-700 hover:text-gray-900  group"
                     >
-                      <ArrowRight className="h-4 w-4 mr-2 text-gray-500 dark:text-gray-400 transform transition-transform group-hover:translate-x-1" />
+                      <ArrowRight className="h-4 w-4 mr-2 text-gray-500 transform transition-transform group-hover:translate-x-1" />
                       <span>Managing children's screen time</span>
                     </a>
                   </li>
                   <li>
                     <a
                       href="/faq#newsletter"
-                      className="flex items-center text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white group"
+                      className="flex items-center text-gray-700 hover:text-gray-900  group"
                     >
-                      <ArrowRight className="h-4 w-4 mr-2 text-gray-500 dark:text-gray-400 transform transition-transform group-hover:translate-x-1" />
+                      <ArrowRight className="h-4 w-4 mr-2 text-gray-500 transform transition-transform group-hover:translate-x-1" />
                       <span>How to subscribe to our newsletter</span>
                     </a>
                   </li>
@@ -274,11 +244,9 @@ const ContactUs = () => {
             </div>
           </div>
 
-          <div className="mt-16 bg-white dark:bg-gray-800 rounded-3xl shadow-lg p-6 overflow-hidden transform transition-all duration-500 hover:shadow-xl">
-            <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-6">
-              Find Us
-            </h3>
-            <div className="h-80 rounded-2xl overflow-hidden bg-gray-100 dark:bg-gray-700">
+          <div className="mt-16 bg-white rounded-3xl shadow-lg p-6 overflow-hidden transform transition-all duration-500 hover:shadow-xl">
+            <h3 className="text-xl font-bold text-gray-800 mb-6">Find Us</h3>
+            <div className="h-80 rounded-2xl overflow-hidden bg-gray-100">
               <iframe
                 title="Office Location"
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3691.169202432397!2d73.16878167596472!3d22.309439742562773!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395fc5873e594259%3A0xda3dc91c20f4beec!2sAnant%20Soft%20Computing!5e0!3m2!1sen!2sin!4v1731308281495!5m2!1sen!2sin"

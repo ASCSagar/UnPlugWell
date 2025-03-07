@@ -11,6 +11,7 @@ import {
   ArrowLeft,
   Tag,
   Eye,
+  Sparkles,
 } from "lucide-react";
 import moment from "moment";
 import { motion } from "framer-motion";
@@ -86,7 +87,7 @@ export default function BlogDetails({ slug }) {
   }, []);
 
   return (
-    <main className="pt-12 min-h-screen bg-white dark:bg-gray-600">
+    <main className="pt-12 min-h-screen bg-gradient-to-r from-indigo-50/30 to-pink-50/30">
       <Head>
         <title>{blog.meta_title}</title>
         <meta name="description" content={blog.meta_description} />
@@ -117,40 +118,38 @@ export default function BlogDetails({ slug }) {
               className="space-y-4"
             >
               <div className="flex flex-wrap items-center gap-3 text-sm">
-                <span className="px-3 py-1 rounded-full bg-purple-600 text-white font-medium">
+                <span className="px-3 py-1 rounded-full bg-indigo-600 text-white font-medium">
                   {blog.category?.name}
                 </span>
-                <div className="flex items-center gap-1 text-gray-500 dark:text-gray-400">
+                <div className="flex items-center gap-1 text-gray-500">
                   <Calendar className="h-4 w-4" />
                   <span>{moment(blog?.published_at)?.format("ll")}</span>
                 </div>
-                <div className="flex items-center gap-1 text-gray-500 dark:text-gray-400">
+                <div className="flex items-center gap-1 text-gray-500">
                   <Clock className="h-4 w-4" />
                   <span>
                     {moment(blog?.published_at)?.startOf("hour")?.fromNow()}
                   </span>
                 </div>
-                <div className="flex items-center gap-1 text-gray-500 dark:text-gray-400">
+                <div className="flex items-center gap-1 text-gray-500">
                   <Eye className="h-4 w-4" />
                   <span>{blog.view_count} views</span>
                 </div>
               </div>
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-indigo-600 to-pink-600 bg-clip-text text-transparent">
                 {blog.title}
               </h1>
-              <p className="text-xl text-gray-600 dark:text-gray-300">
-                {blog.excerpt}
-              </p>
-              <div className="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-700">
+              <p className="text-xl text-gray-600">{blog.excerpt}</p>
+              <div className="flex items-center justify-between pt-4 border-t border-gray-200">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center text-white font-semibold">
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-indigo-600 to-pink-600 flex items-center justify-center text-white font-semibold">
                     {blog.author?.full_name?.charAt(0)}
                   </div>
                   <div>
-                    <h3 className="text-gray-900 dark:text-white font-medium">
+                    <h3 className="text-gray-900 font-medium">
                       {blog.author?.full_name}
                     </h3>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">
+                    <p className="text-sm text-gray-500">
                       Author & Content Creator
                     </p>
                   </div>
@@ -175,7 +174,7 @@ export default function BlogDetails({ slug }) {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
-              className="prose prose-lg dark:prose-invert prose-headings:text-white prose-p:text-white max-w-none"
+              className="prose prose-lg prose-headings:text-gray-900 prose-p:text-gray-600 max-w-none"
               dangerouslySetInnerHTML={{ __html: blog.content }}
             />
           </div>
@@ -189,7 +188,7 @@ export default function BlogDetails({ slug }) {
               >
                 <button
                   onClick={handleGoBack}
-                  className="flex items-center gap-2 px-4 py-2 rounded-full bg-purple-600 text-white text-sm font-medium hover:bg-purple-700 transition-colors"
+                  className="flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-600 text-white text-sm font-medium hover:bg-indigo-700 transition-colors"
                 >
                   <ArrowLeft className="h-4 w-4" />
                   Back to Blogs
@@ -199,9 +198,10 @@ export default function BlogDetails({ slug }) {
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: 0.3 }}
-                className="bg-gradient-to-br from-purple-50 to-indigo-50 dark:from-gray-800 dark:to-gray-900 rounded-xl p-6 shadow-md"
+                className="bg-gradient-to-br from-indigo-50 to-pink-50 rounded-xl p-6 shadow-md"
               >
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+                <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                  <Sparkles className="h-4 w-4 text-indigo-600 mr-2" />
                   Share this article
                 </h3>
                 <div className="grid grid-cols-3 gap-3">
@@ -240,16 +240,17 @@ export default function BlogDetails({ slug }) {
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.5, delay: 0.4 }}
-                  className="bg-gradient-to-br from-purple-50 to-indigo-50 dark:from-gray-800 dark:to-gray-900 rounded-xl p-6 shadow-md"
+                  className="bg-gradient-to-br from-indigo-50 to-pink-50 rounded-xl p-6 shadow-md"
                 >
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                    <Tag className="h-4 w-4 text-indigo-600 mr-2" />
                     Tags
                   </h3>
                   <div className="flex flex-wrap gap-2">
                     {blog.tags.map((tag, index) => (
                       <span
                         key={index}
-                        className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-white/80 dark:bg-gray-900/80 text-purple-600 dark:text-purple-400 text-sm font-medium hover:shadow-md transition-shadow"
+                        className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-white/80 text-indigo-600 text-sm font-medium hover:shadow-md transition-shadow"
                       >
                         <Tag className="h-3 w-3" />
                         {tag.name}
@@ -263,19 +264,19 @@ export default function BlogDetails({ slug }) {
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.5, delay: 0.5 }}
-                  className="bg-gradient-to-br from-purple-50 to-indigo-50 dark:from-gray-800 dark:to-gray-900 rounded-xl p-6 shadow-md"
+                  className="bg-gradient-to-br from-indigo-50 to-pink-50 rounded-xl p-6 shadow-md"
                 >
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4">
                     About the Author
                   </h3>
                   <div className="flex flex-col items-center text-center">
-                    <div className="w-20 h-20 rounded-full bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center text-white text-2xl font-semibold mb-3">
+                    <div className="w-20 h-20 rounded-full bg-gradient-to-br from-indigo-600 to-pink-600 flex items-center justify-center text-white text-2xl font-semibold mb-3">
                       {blog.author.full_name.charAt(0)}
                     </div>
-                    <h4 className="text-xl font-semibold text-gray-900 dark:text-white">
+                    <h4 className="text-xl font-semibold text-gray-900">
                       {blog.author.full_name}
                     </h4>
-                    <p className="text-gray-600 dark:text-gray-300 mt-2">
+                    <p className="text-gray-600 mt-2">
                       Content creator and specialist in well-being topics.
                       Passionate about helping people unplug and find balance in
                       their lives.
@@ -294,7 +295,7 @@ export default function BlogDetails({ slug }) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             onClick={handleGoBack}
-            className="flex items-center gap-2 px-4 py-2 rounded-full bg-purple-600 text-white text-sm font-medium hover:bg-purple-700 transition-colors shadow-lg"
+            className="flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-600 text-white text-sm font-medium hover:bg-indigo-700 transition-colors shadow-lg"
           >
             <ArrowLeft className="h-4 w-4" />
             Back to Blogs

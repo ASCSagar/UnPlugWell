@@ -19,19 +19,13 @@ const Hero = () => {
 
   return (
     <section className="relative min-h-[85vh] flex items-center">
-      <div className="absolute inset-0 bg-gradient-to-br from-purple-900 via-indigo-800 to-violet-900">
-        <div className="absolute inset-0 opacity-30">
-          <div className="absolute top-0 -left-4 w-80 h-80 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl animate-blob"></div>
-          <div className="absolute top-0 -right-4 w-96 h-96 bg-indigo-500 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-2000"></div>
-          <div className="absolute -bottom-8 left-20 w-72 h-72 bg-violet-500 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-4000"></div>
-          <div className="absolute bottom-20 right-20 w-64 h-64 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-3000"></div>
-        </div>
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-1/4 left-1/4 w-16 h-24 bg-white rounded-lg transform rotate-12 animate-float"></div>
-          <div className="absolute top-1/3 right-1/4 w-32 h-24 bg-white rounded-md transform -rotate-6 animate-float animation-delay-2000"></div>
-          <div className="absolute bottom-1/4 left-1/3 w-12 h-12 bg-white rounded-full transform animate-float animation-delay-3000"></div>
-          <div className="absolute top-2/3 right-1/3 w-20 h-4 bg-white rounded-md transform rotate-3 animate-float animation-delay-1500"></div>
-        </div>
+      <div className="absolute inset-0 bg-gradient-to-br from-purple-900 via-indigo-900 to-purple-900">
+        <div className="absolute inset-0 bg-grid-white/[0.05]" />
+      </div>
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob" />
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-indigo-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000" />
+        <div className="absolute top-40 left-40 w-80 h-80 bg-pink-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000" />
       </div>
       <div className="relative container mx-auto px-6 pt-24 pb-12 text-center">
         <div className="max-w-4xl mx-auto">
@@ -127,16 +121,6 @@ const Hero = () => {
               </div>
               <div className="text-xl font-bold text-white mb-2">10K+</div>
               <div className="text-purple-200 text-sm">Transformed Lives</div>
-            </div>
-          </div>
-          <div className="absolute -bottom-8 left-1/4 transform -translate-x-1/2 rotate-12 hidden lg:block">
-            <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg px-4 py-2 text-white text-sm animate-float">
-              <span className="font-semibold">✓ Real Life Success Stories</span>
-            </div>
-          </div>
-          <div className="absolute -bottom-4 right-1/4 transform translate-x-1/2 -rotate-6 hidden lg:block">
-            <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg px-4 py-2 text-white text-sm animate-float animation-delay-2000">
-              <span className="font-semibold">✓ Digital Fasting</span>
             </div>
           </div>
         </div>

@@ -48,7 +48,7 @@ export default function Categories() {
   );
 
   return (
-    <main className=" min-h-screen bg-gray-50 dark:bg-gray-900">
+    <main className="py-12 min-h-screen bg-gradient-to-r from-indigo-50 to-pink-50">
       <section className="relative py-20 bg-gradient-to-br from-purple-900 via-indigo-900 to-purple-900">
         <div className="absolute inset-0 bg-grid-white/[0.05]" />
         <div className="relative container mx-auto px-6">
@@ -57,8 +57,7 @@ export default function Categories() {
               Categories
             </h1>
             <p className="text-xl text-purple-100 mb-8">
-              Discover focused content across various aspects of digital
-              wellness
+              Discover focused content across various aspects of digital wellness
             </p>
             <div className="relative max-w-2xl mx-auto">
               <input
@@ -79,20 +78,20 @@ export default function Categories() {
             {[...Array(6)].map((_, index) => (
               <div
                 key={index}
-                className="overflow-hidden bg-white dark:bg-gray-800 rounded-2xl shadow-lg"
+                className="overflow-hidden bg-white rounded-2xl shadow-lg"
               >
                 <div className="p-8 h-full min-h-[320px] flex flex-col">
                   <div className="flex items-start justify-between mb-4">
-                    <div className="bg-gray-200 dark:bg-gray-700 p-3 rounded-xl animate-pulse">
+                    <div className="bg-gray-200 p-3 rounded-xl animate-pulse">
                       <div className="h-6 w-6"></div>
                     </div>
                   </div>
-                  <div className="h-8 bg-gray-200 dark:bg-gray-700 rounded animate-pulse mb-4 w-2/3"></div>
-                  <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded animate-pulse mb-2"></div>
-                  <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded animate-pulse mb-2"></div>
-                  <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded animate-pulse mb-6 w-3/4"></div>
+                  <div className="h-8 bg-gray-200 rounded animate-pulse mb-4 w-2/3"></div>
+                  <div className="h-4 bg-gray-200 rounded animate-pulse mb-2"></div>
+                  <div className="h-4 bg-gray-200 rounded animate-pulse mb-2"></div>
+                  <div className="h-4 bg-gray-200 rounded animate-pulse mb-6 w-3/4"></div>
                   <div className="mt-auto">
-                    <div className="h-6 bg-gray-200 dark:bg-gray-700 rounded animate-pulse w-40"></div>
+                    <div className="h-6 bg-gray-200 rounded animate-pulse w-40"></div>
                   </div>
                 </div>
               </div>
@@ -102,7 +101,7 @@ export default function Categories() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredCategories.map((category, index) => (
               <Link key={index} href={`/categories/${category.slug}`}>
-                <div className="relative group overflow-hidden bg-white dark:bg-gray-800 rounded-2xl shadow-lg transition-all duration-500">
+                <div className="relative group overflow-hidden bg-white rounded-2xl shadow-lg transition-all duration-500 hover:shadow-xl">
                   <div
                     className={`absolute inset-0 bg-gradient-to-r ${
                       gradientColors[category.colorIndex]
@@ -131,7 +130,7 @@ export default function Categories() {
           </div>
         ) : (
           <div className="flex justify-center items-center">
-            <div className="text-center text-gray-600 dark:text-gray-400">
+            <div className="text-center text-gray-600">
               No Category Found.
             </div>
           </div>

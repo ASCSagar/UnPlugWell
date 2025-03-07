@@ -13,12 +13,12 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white dark:bg-gray-900">
+    <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-gray-900 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex-shrink-0">
             <Link href="/" className="flex items-center space-x-2">
-              <span className="text-2xl font-bold text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+              <span className="text-2xl font-bold text-white transition-colors">
                 Unplugwell
               </span>
             </Link>
@@ -28,7 +28,7 @@ const Header = () => {
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors"
+                className="text-gray-400 hover:text-white font-medium transition-colors"
               >
                 {item.name}
               </Link>
@@ -37,7 +37,7 @@ const Header = () => {
           <div className="flex md:hidden">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="p-2 rounded-md text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+              className="p-2 rounded-md text-white transition-colors"
             >
               {isMenuOpen ? (
                 <X className="h-6 w-6" />
@@ -48,13 +48,13 @@ const Header = () => {
           </div>
         </div>
         {isMenuOpen && (
-          <div className="md:hidden py-4 border-t border-gray-200 dark:border-gray-700">
+          <div className="md:hidden py-4 border-t border-gray-800">
             <div className="flex flex-col space-y-4">
               {navigation.map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium block px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                  className="text-gray-400 hover:text-white font-medium block px-3 py-2 rounded-md hover:bg-gray-800 transition-colors"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.name}
