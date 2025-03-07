@@ -6,10 +6,25 @@ export const generateMetadata = async ({ params }) => {
     const { data: blog } = await axios.get(
       `https://unplugwell.com/blog/api/post/${params?.slug}/`
     );
-
     return {
       title: blog.meta_title,
       description: blog.meta_description,
+      openGraph: {
+        title: blog.meta_title,
+        description: blog.meta_description,
+        images: [
+          {
+            url: blog.featured_image,
+            alt: blog.image_alt || blog.meta_title,
+          },
+        ],
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: blog.meta_title,
+        description: blog.meta_description,
+        images: [blog.featured_image],
+      },
     };
   } catch (error) {
     console.log("error", error);
